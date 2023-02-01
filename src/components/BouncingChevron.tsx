@@ -1,4 +1,4 @@
-import { useSpring, animated, easings } from "react-spring";
+import { useSpring, animated, easings } from "@react-spring/web";
 import { BsChevronDown } from "react-icons/bs";
 
 export const BouncingChevron = () => {
