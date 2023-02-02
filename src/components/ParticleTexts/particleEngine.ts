@@ -104,7 +104,7 @@ export default class Environment {
   }
 }
 
-const bgParticleColor: [number, number, number] = [0.7, 0.7, 0.6];
+const bgParticleColorHSL: [number, number, number] = [0, 0.73, 0.53];
 
 class CreateParticles {
   scene: THREE.Scene;
@@ -285,7 +285,7 @@ class CreateParticles {
         px -= f * Math.cos(t);
         py -= f * Math.sin(t);
 
-        this.colorChange.setHSL(...bgParticleColor);
+        this.colorChange.setHSL(...bgParticleColorHSL);
         colors.setXYZ(
           i,
           this.colorChange.r,
@@ -300,7 +300,7 @@ class CreateParticles {
           py > initY + 70 ||
           py < initY - 70
         ) {
-          this.colorChange.setHSL(...bgParticleColor);
+          this.colorChange.setHSL(...bgParticleColorHSL);
           colors.setXYZ(
             i,
             this.colorChange.r,
@@ -316,7 +316,7 @@ class CreateParticles {
             px -= 0.03 * Math.cos(t);
             py -= 0.03 * Math.sin(t);
 
-            this.colorChange.setHSL(...bgParticleColor);
+            this.colorChange.setHSL(...bgParticleColorHSL);
             colors.setXYZ(
               i,
               this.colorChange.r,
@@ -345,7 +345,7 @@ class CreateParticles {
             py > initY + 10 ||
             py < initY - 10
           ) {
-            this.colorChange.setHSL(...bgParticleColor);
+            this.colorChange.setHSL(...bgParticleColorHSL);
             colors.setXYZ(
               i,
               this.colorChange.r,

@@ -13,7 +13,7 @@ import LinkButton from "@/components/LinkButton";
 
 export const LightDanceContent = () => {
   return (
-    <Container size="sm" className="ml-108 pt-16">
+    <Container size="sm" className="ml-144 pt-16">
       <div className="mb-8 flex items-center gap-8">
         <div className="grid h-[200px] w-[200px] place-content-center rounded-2xl bg-black p-4">
           <Image src={logo} width={200} alt="The logo of NTUEE light dance." />
@@ -42,13 +42,20 @@ export const LightDanceContent = () => {
           </LinkButton>
         </div>
       </div>
-      <Text className="text-2xl font-semibold">
-        I major in electrical engineering at National Taiwan University. I'm a
-        software engineer who loves to create things. I can build applications
-        in teams. I work as a freelance engineer for businesses as well. I can
-        speak English well. I'm excited to pursue a career as a software
-        engineer, whether it be here in Taiwan or abroad.
-      </Text>
+      <article>
+        <Text className="text-2xl font-semibold">
+          NTUEE Light Dance is a group of 43 NTUEE students who are passionate
+          about art and technology. The performance consists of choreography,
+          music, handcraft, and engineering. There are a lot of challenges to
+          overcome. The frontend, backend, hardware, and design teams should all
+          work in synergy to make this happen.
+          <br />
+          <br />I lead our software team of 12 students to conquer many
+          technical challenges. I learned a lot from this experience. This will
+          be something I'll never forget. Please visit our website for more
+          information.
+        </Text>
+      </article>
     </Container>
   );
 };

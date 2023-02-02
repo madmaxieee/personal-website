@@ -52,7 +52,7 @@ const Home: NextPage = () => {
               "text-red-200",
               "text-red-300",
               "text-red-600",
-              "text-red-600",
+              "text-red-800",
             ]}
             className="ml-60 mt-12"
           />
@@ -104,7 +104,7 @@ const Home: NextPage = () => {
               "text-red-200",
               "text-red-300",
               "text-red-600",
-              "text-red-600",
+              "text-red-800",
             ]}
             className="ml-60 mt-12"
           />
