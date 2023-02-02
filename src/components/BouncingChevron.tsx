@@ -19,3 +19,5 @@ export const BouncingChevron = () => {
     </animated.div>
   );
 };
+
+export default BouncingChevron;

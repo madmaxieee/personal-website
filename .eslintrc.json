@@ -29,7 +29,7 @@
   "rules": {
     "@typescript-eslint/consistent-type-imports": "warn",
     "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
+    "react/no-unescaped-entities": "off",
     "react/function-component-definition": [
       "warn",
       {
