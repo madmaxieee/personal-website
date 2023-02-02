@@ -1,37 +1,44 @@
 import Image from "next/image";
 
 import { Text, Container } from "@mantine/core";
-import { IconBrandGithub, IconMail } from "@tabler/icons-react";
+import {
+  IconWorld,
+  IconBrandGithub,
+  IconBrandYoutube,
+} from "@tabler/icons-react";
 
-import avatar from "@/assets/images/avatar.png";
+import logo from "@/assets/images/LightDanceLogo.png";
 
 import LinkButton from "@/components/LinkButton";
 
-export const AboutMeContent = () => {
+export const LightDanceContent = () => {
   return (
     <Container size="sm" className="ml-108 pt-16">
       <div className="mb-8 flex items-center gap-8">
-        <Image
-          src={avatar}
-          width={200}
-          height={200}
-          alt="The illustration of Max Chuang."
-          className="rounded-2xl"
-        />
+        <div className="grid h-[200px] w-[200px] place-content-center rounded-2xl bg-black p-4">
+          <Image src={logo} width={200} alt="The logo of NTUEE light dance." />
+        </div>
         <div className="flex flex-col gap-4">
           <LinkButton
-            href="mailto:chuangjiaxu@gmail.com"
+            href="https://lightdance.ntuee.org/"
             color="red"
-            icon={<IconMail />}
+            icon={<IconWorld />}
           >
-            Send Email
+            Visit Website
           </LinkButton>
           <LinkButton
-            href="https://github.com/madmaxieee"
+            href="https://youtu.be/rN6hMTVfCt4"
+            color="red"
+            icon={<IconBrandYoutube />}
+          >
+            Watch Video
+          </LinkButton>
+          <LinkButton
+            href="https://github.com/NTUEELightDance/LightDance-Editor"
             color="red"
             icon={<IconBrandGithub />}
           >
-            Visit GitHub
+            View Source Code
           </LinkButton>
         </div>
       </div>
@@ -46,4 +53,4 @@ export const AboutMeContent = () => {
   );
 };
 
-export default AboutMeContent;
+export default LightDanceContent;

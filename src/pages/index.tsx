@@ -3,11 +3,10 @@ import Head from "next/head";
 
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
-import { Title, Text, Container } from "@mantine/core";
-
 import ParticleText from "@/components/ParticleTexts";
 import BouncingChevron from "@/components/BouncingChevron";
 import AboutMeContent from "@/components/AboutMeContent";
+import LightDanceContent from "@/components/ProjectContents/LightDanceContent";
 import RepeatedTitle from "@/components/RepeatedTitle";
 
 const Home: NextPage = () => {
@@ -19,17 +18,19 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Parallax pages={9} className="top-0">
+        {/* background */}
         <ParallaxLayer sticky={{ start: 0, end: 6 }} className="-z-40">
           <ParticleText text="madmax" />
           <div className="absolute top-3/4 grid w-full place-items-center">
             <BouncingChevron />
           </div>
         </ParallaxLayer>
+        {/* about me */}
         <ParallaxLayer
           sticky={{ start: 1, end: 2.5 }}
           className="grid h-full w-full place-items-center"
         >
-          <div className="top-1/5 relative -z-10 h-4/5 w-full bg-slate-400/20 backdrop-blur-lg"></div>
+          <div className="top-1/5 relative -z-10 h-4/5 w-full bg-slate-400/20 backdrop-blur-xl"></div>
         </ParallaxLayer>
         <ParallaxLayer offset={1.3} speed={1.5}>
           <RepeatedTitle
@@ -46,14 +47,20 @@ const Home: NextPage = () => {
         <ParallaxLayer offset={1.3} speed={0.5}>
           <RepeatedTitle
             title="about"
-            colorClasses={["text-red-100", "text-red-300", "text-red-600"]}
+            colorClasses={[
+              "text-red-100",
+              "text-red-200",
+              "text-red-300",
+              "text-red-600",
+              "text-red-600",
+            ]}
             className="ml-60 mt-12"
           />
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{
             start: 1.3,
-            end: 1.3,
+            end: 2,
           }}
         >
           <RepeatedTitle
@@ -70,35 +77,56 @@ const Home: NextPage = () => {
             <AboutMeContent />
           </div>
         </ParallaxLayer>
+        {/* projects */}
         <ParallaxLayer
           sticky={{ start: 4.5, end: 6 }}
           className="grid h-full w-full place-items-center"
         >
-          <div className="top-1/5 relative -z-10 h-4/5 w-full bg-slate-400/20 backdrop-blur-lg"></div>
+          <div className="top-1/5 relative -z-10 h-4/5 w-full bg-slate-400/20 backdrop-blur-xl"></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={4.8} speed={1.5}>
+          <RepeatedTitle
+            title="project"
+            colorClasses={[
+              "text-red-700",
+              "text-red-800",
+              "text-red-900",
+              "text-red-900",
+            ]}
+            className="ml-12 mt-4"
+          />
+        </ParallaxLayer>
+        <ParallaxLayer offset={4.8} speed={0.5}>
+          <RepeatedTitle
+            title="project"
+            colorClasses={[
+              "text-red-100",
+              "text-red-200",
+              "text-red-300",
+              "text-red-600",
+              "text-red-600",
+            ]}
+            className="ml-60 mt-12"
+          />
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{
             start: 4.8,
-            end: 4.8,
+            end: 5.2,
           }}
         >
-          <div className="ml-12">
-            <Title className="whitespace-nowrap py-12 text-giant backdrop-blur-lg text-vertical">
-              project. project. project.
-            </Title>
-          </div>
+          <RepeatedTitle
+            title="project"
+            colorClasses={["text-red-100", "text-red-300", "text-red-600"]}
+            className="ml-36"
+          />
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{ start: 4.5, end: 6 }}
           className="grid h-full w-full place-items-center"
         >
           <div className="top-1/5 relative -z-10 h-4/5 w-full">
-            <Container className="ml-96 pt-16">
-              <Text fw="500" fz="xl">
-                I am a software engineer who is passionate about building
-                things.
-              </Text>
-            </Container>
+            <LightDanceContent />
           </div>
         </ParallaxLayer>
       </Parallax>

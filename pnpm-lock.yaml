@@ -9,6 +9,7 @@ specifiers:
   '@next/font': ^13.1.6
   '@react-spring/parallax': ^9.6.1
   '@react-spring/web': ^9.6.1
+  '@tabler/icons-react': ^2.1.2
   '@tanstack/react-query': ^4.20.0
   '@trpc/client': ^10.9.0
   '@trpc/next': ^10.9.0
@@ -46,6 +47,7 @@ dependencies:
   '@next/font': 13.1.6
   '@react-spring/parallax': 9.6.1_biqbaboplfbrettd7655fr4n2y
   '@react-spring/web': 9.6.1_biqbaboplfbrettd7655fr4n2y
+  '@tabler/icons-react': 2.1.2_react@18.2.0
   '@tanstack/react-query': 4.24.4_biqbaboplfbrettd7655fr4n2y
   '@trpc/client': 10.9.1_@trpc+server@10.9.1
   '@trpc/next': 10.9.1_xct5i5wpfctm4ykzpuv5zmefxu
@@ -890,6 +892,20 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@tabler/icons-react/2.1.2_react@18.2.0:
+    resolution: {integrity: sha512-DrJrr7e7+tzsqm3KFw1gg9Pfapz+gNA2bwv78tdlMKVQ5G6bfEtKVugzqqpgLfCJN/CgcM1ZROGrLtdmV/O6gw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@tabler/icons': 2.1.2
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
+  /@tabler/icons/2.1.2:
+    resolution: {integrity: sha512-+CPB+BSqVDP4+/d+cHSaGwG460C3sob7EJkQ+ZS8xV6bRER64OsCP92O7M+uYBhJFDWuf6poCeSETNZNcFa2nA==}
     dev: false
 
   /@tanstack/query-core/4.24.4:
@@ -2744,7 +2760,6 @@ packages:
   /object-assign/4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /object-hash/3.0.0:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
@@ -3059,7 +3074,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: true
 
   /punycode/2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
