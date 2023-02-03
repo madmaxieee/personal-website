@@ -393,9 +393,9 @@ class CreateParticles {
     const xMid = geometry.boundingBox
       ? -0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x)
       : 0;
-    const yMid =
-      geometry.boundingBox &&
-      (geometry.boundingBox.max.y - geometry.boundingBox.min.y) / 3;
+    const yMid = geometry.boundingBox
+      ? (geometry.boundingBox.max.y - geometry.boundingBox.min.y) / 3
+      : 0;
 
     geometry.center();
 
@@ -420,12 +420,12 @@ class CreateParticles {
       const points = shape.getSpacedPoints(this.data.amount);
 
       points.forEach((element) => {
-        const a = new THREE.Vector3(
+        const point = new THREE.Vector3(
           element.x + getSpread(),
           element.y + getSpread(),
           0
         );
-        thePoints.push(a);
+        thePoints.push(point);
         colors.push(this.colorChange.r, this.colorChange.g, this.colorChange.b);
         sizes.push(1);
       });
@@ -435,19 +435,32 @@ class CreateParticles {
       const points = hole.getSpacedPoints(this.data.amount / 2);
 
       points.forEach((element) => {
-        const a = new THREE.Vector3(
+        const point = new THREE.Vector3(
           element.x + getSpread(),
           element.y + getSpread(),
           0
         );
-        thePoints.push(a);
+        thePoints.push(point);
         colors.push(this.colorChange.r, this.colorChange.g, this.colorChange.b);
         sizes.push(1);
       });
     }
 
+    // get random points
+    const distance = 300;
+    for (let i = 0; i < this.data.amount * 1.5; i++) {
+      const point = new THREE.Vector3(
+        THREE.MathUtils.randFloatSpread(1) * distance - xMid,
+        THREE.MathUtils.randFloatSpread(1) * distance - yMid,
+        0
+      );
+      thePoints.push(point);
+      colors.push(this.colorChange.r, this.colorChange.g, this.colorChange.b);
+      sizes.push(3);
+    }
+
     const geoParticles = new THREE.BufferGeometry().setFromPoints(thePoints);
-    geoParticles.translate(xMid, yMid as number, 0);
+    geoParticles.translate(xMid, yMid, 0);
 
     geoParticles.setAttribute(
       "customColor",
