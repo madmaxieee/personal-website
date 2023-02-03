@@ -10,9 +10,9 @@ export const ScrollProgress = ({ progress }: ScrollProgressProps) => {
   });
 
   return (
-    <div className="sticky top-0 z-10 h-2 w-full bg-red-900">
+    <div className="sticky top-0 z-10 h-1.5 w-full bg-red-900">
       <animated.div
-        className="sticky top-0 z-10 h-2 w-full bg-red-600"
+        className="sticky top-0 z-10 h-1.5 w-full bg-red-600"
         style={{
           width: props.progress.to((x) => `${x * 100}%`),
         }}
