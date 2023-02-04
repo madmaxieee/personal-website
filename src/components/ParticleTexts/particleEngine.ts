@@ -105,6 +105,7 @@ export default class Environment {
 }
 
 const bgParticleColorHSL: [number, number, number] = [0, 0.73, 0.53];
+const foregroundColorHSL: [number, number, number] = [0, 1, 1];
 
 class CreateParticles {
   scene: THREE.Scene;
@@ -118,14 +119,18 @@ class CreateParticles {
   mouse: THREE.Vector2;
   colorChange: THREE.Color;
   bottom: boolean;
-  data: {
-    text: string;
+  attribute: {
     amount: number;
     particleSize: number;
     particleColor: number;
     textSize: number;
-    area: number;
+    force: number;
     ease: number;
+    radius1: number;
+    radius2: number;
+    radius3: number;
+    bgParticleColorHSL: [number, number, number];
+    foregroundColorHSL: [number, number, number];
   };
   exploded = false;
   planeArea: THREE.Mesh;
@@ -152,17 +157,22 @@ class CreateParticles {
     this.raycaster = new THREE.Raycaster();
 
     this.mouse = new THREE.Vector2(100, 100);
-    this.data = {
-      text: this.text,
+    this.attribute = {
       amount: 600,
       particleSize: 1.5,
       particleColor: 0xffffff,
       textSize: 24,
-      area: 50,
+      force: 50,
       ease: 0.05,
+      radius1: 50,
+      radius2: 70,
+      radius3: 10,
+      bgParticleColorHSL: [0, 0.73, 0.53],
+      foregroundColorHSL: [0, 1, 1],
     };
 
     this.colorChange = new THREE.Color();
+    this.colorChange.setHSL(...foregroundColorHSL);
 
     this.bottom = false;
 
@@ -197,12 +207,12 @@ class CreateParticles {
     const vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 0.5);
     vector.unproject(this.camera);
     this.bottom = true;
-    this.data.ease = 0.01;
+    this.attribute.ease = 0.01;
   }
 
   onMouseUp() {
     this.bottom = false;
-    this.data.ease = 0.05;
+    this.attribute.ease = 0.05;
   }
 
   onMouseMove(event: MouseEvent) {
@@ -221,16 +231,12 @@ class CreateParticles {
 
     const pos = this.particles.geometry.attributes
       .position as THREE.BufferAttribute;
-    const copy = this.geometryCopy.attributes.position as THREE.BufferAttribute;
+    const originalPos = this.geometryCopy.attributes
+      .position as THREE.BufferAttribute;
     const colors = this.particles.geometry.attributes
       .customColor as THREE.BufferAttribute;
     const size = this.particles.geometry.attributes
       .size as THREE.BufferAttribute;
-
-    const newSizeArray: number[] = [];
-    for (let i = 0; i < size.array.length; i++) {
-      newSizeArray.push(size.array[i]!);
-    }
 
     const mx = intersects[0]?.point.x ?? 0;
     const my = intersects[0]?.point.y ?? 0;
@@ -239,13 +245,11 @@ class CreateParticles {
       for (let i = 0, l = pos.count; i < l; i++) {
         const explodeRange = 100;
         const posX =
-          (copy.getX(i) as number) +
-          (THREE.MathUtils.randFloatSpread(explodeRange) as number);
+          originalPos.getX(i) + THREE.MathUtils.randFloatSpread(explodeRange);
         const posY =
-          (copy.getY(i) as number) +
-          (THREE.MathUtils.randFloatSpread(explodeRange) as number);
+          originalPos.getY(i) + THREE.MathUtils.randFloatSpread(explodeRange);
         const posZ =
-          copy.getZ(i) + THREE.MathUtils.randFloatSpread(explodeRange);
+          originalPos.getZ(i) + THREE.MathUtils.randFloatSpread(explodeRange);
 
         pos.setXYZ(i, posX, posY, posZ);
       }
@@ -253,15 +257,15 @@ class CreateParticles {
     }
 
     for (let i = 0, l = pos.count; i < l; i++) {
-      const initX = copy.getX(i);
-      const initY = copy.getY(i);
-      const initZ = copy.getZ(i);
+      const initX = originalPos.getX(i);
+      const initY = originalPos.getY(i);
+      const initZ = originalPos.getZ(i);
 
       let px = pos.getX(i);
       let py = pos.getY(i);
       let pz = pos.getZ(i);
 
-      this.colorChange.setHSL(0.5, 1, 1);
+      this.colorChange.setHSL(...foregroundColorHSL);
       colors.setXYZ(
         i,
         this.colorChange.r,
@@ -270,15 +274,15 @@ class CreateParticles {
       );
       colors.needsUpdate = true;
 
-      newSizeArray[i] = this.data.particleSize;
+      size.setX(i, this.attribute.particleSize);
       size.needsUpdate = true;
 
-      let dy = my - py;
-      let dx = mx - px;
+      const dy = my - py;
+      const dx = mx - px;
 
       const mouseDistance = this.distance(mx, my, px, py);
-      const d = (dx = mx - px) * dx + (dy = my - py) * dy;
-      const f = -this.data.area / d;
+      const d2 = dx * dx + dy * dy;
+      const f = -this.attribute.force / d2;
 
       if (this.bottom) {
         const t = Math.atan2(dy, dx);
@@ -295,10 +299,8 @@ class CreateParticles {
         colors.needsUpdate = true;
 
         if (
-          px > initX + 70 ||
-          px < initX - 70 ||
-          py > initY + 70 ||
-          py < initY - 70
+          Math.abs(px - initX) > this.attribute.radius2 ||
+          Math.abs(py - initY) > this.attribute.radius2
         ) {
           this.colorChange.setHSL(...bgParticleColorHSL);
           colors.setXYZ(
@@ -310,7 +312,7 @@ class CreateParticles {
           colors.needsUpdate = true;
         }
       } else {
-        if (mouseDistance < this.data.area) {
+        if (mouseDistance < this.attribute.radius1) {
           if (i % 5 === 0) {
             const t = Math.atan2(dy, dx);
             px -= 0.03 * Math.cos(t);
@@ -325,7 +327,7 @@ class CreateParticles {
             );
             colors.needsUpdate = true;
 
-            newSizeArray[i] = this.data.particleSize / 1.2;
+            size.setX(i, this.attribute.particleSize / 1.2);
             size.needsUpdate = true;
           } else {
             const t = Math.atan2(dy, dx);
@@ -335,15 +337,13 @@ class CreateParticles {
             pos.setXYZ(i, px, py, pz);
             pos.needsUpdate = true;
 
-            newSizeArray[i] = this.data.particleSize * 1.3;
+            size.setX(i, this.attribute.particleSize * 1.3);
             size.needsUpdate = true;
           }
 
           if (
-            px > initX + 10 ||
-            px < initX - 10 ||
-            py > initY + 10 ||
-            py < initY - 10
+            Math.abs(px - initX) > this.attribute.radius3 ||
+            Math.abs(py - initY) > this.attribute.radius3
           ) {
             this.colorChange.setHSL(...bgParticleColorHSL);
             colors.setXYZ(
@@ -354,15 +354,15 @@ class CreateParticles {
             );
             colors.needsUpdate = true;
 
-            newSizeArray[i] = this.data.particleSize / 1.8;
+            size.setX(i, this.attribute.particleSize / 1.8);
             size.needsUpdate = true;
           }
         }
       }
 
-      px += (initX - px) * this.data.ease;
-      py += (initY - py) * this.data.ease;
-      pz += (initZ - pz) * this.data.ease;
+      px += (initX - px) * this.attribute.ease;
+      py += (initY - py) * this.attribute.ease;
+      pz += (initZ - pz) * this.attribute.ease;
 
       // add random movement to the particles
       const interval = 1000;
@@ -371,22 +371,23 @@ class CreateParticles {
       if ((t + i) % freq === random(t, freq)) {
         const amp = 0.1;
         const linear = 1 - (time % interval) / interval;
+
         px += amp * (random(i * t + 1) - 0.5) * linear;
         py += amp * (random(i + t * 2) - 0.5) * linear;
         pz += amp * (random(i ^ (t * 3)) - 0.5) * linear;
+
+        size.setX(i, this.attribute.particleSize * 1.3);
       }
 
       pos.setXYZ(i, px, py, pz);
       pos.needsUpdate = true;
     }
-
-    size.copyArray(newSizeArray);
   }
 
   createText() {
     const thePoints: THREE.Vector3[] = [];
 
-    const shapes = this.font.generateShapes(this.data.text, this.data.textSize);
+    const shapes = this.font.generateShapes(this.text, this.attribute.textSize);
     const geometry = new THREE.ShapeGeometry(shapes);
     geometry.computeBoundingBox();
 
@@ -417,7 +418,7 @@ class CreateParticles {
       THREE.MathUtils.randFloatSpread(0.7);
 
     for (const shape of shapes) {
-      const points = shape.getSpacedPoints(this.data.amount);
+      const points = shape.getSpacedPoints(this.attribute.amount);
 
       points.forEach((element) => {
         const point = new THREE.Vector3(
@@ -432,7 +433,7 @@ class CreateParticles {
     }
 
     for (const hole of holePaths) {
-      const points = hole.getSpacedPoints(this.data.amount / 2);
+      const points = hole.getSpacedPoints(this.attribute.amount / 2);
 
       points.forEach((element) => {
         const point = new THREE.Vector3(
@@ -448,7 +449,7 @@ class CreateParticles {
 
     // get random points
     const distance = 300;
-    for (let i = 0; i < this.data.amount * 1.5; i++) {
+    for (let i = 0; i < this.attribute.amount * 1.5; i++) {
       const point = new THREE.Vector3(
         THREE.MathUtils.randFloatSpread(1) * distance - xMid,
         THREE.MathUtils.randFloatSpread(1) * distance - yMid,
