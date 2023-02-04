@@ -13,7 +13,7 @@ import LinkButton from "@/components/LinkButton";
 
 export const LightDanceContent = () => {
   return (
-    <Container size="sm" className="ml-144 pt-16">
+    <Container size="sm" className="pt-16">
       <div className="mb-8 flex items-center gap-8">
         <div className="grid h-[200px] w-[200px] place-content-center rounded-2xl bg-black p-4">
           <Image src={logo} width={200} alt="The logo of NTUEE light dance." />

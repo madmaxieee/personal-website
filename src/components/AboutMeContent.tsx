@@ -14,7 +14,7 @@ import LinkButton from "@/components/LinkButton";
 
 export const AboutMeContent = () => {
   return (
-    <Container size="sm" className="ml-144 pt-16">
+    <Container size="sm" className="pt-16">
       <div className="mb-8 flex items-center gap-6">
         <Image
           src={avatar}

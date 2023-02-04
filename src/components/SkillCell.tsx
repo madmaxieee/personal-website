@@ -39,7 +39,7 @@ export const SkillCell = ({ logo, label, className = "" }: CellProps) => {
       >
         <Image
           src={logo}
-          alt="logo"
+          alt={`${label} logo`}
           width={150}
           height={150}
           className="drop-shadow-lg"

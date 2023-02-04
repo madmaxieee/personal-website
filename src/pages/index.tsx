@@ -60,31 +60,6 @@ const Home: NextPage = () => {
             ref={aboutMeRef}
           ></div>
         </ParallaxLayer>
-        <ParallaxLayer offset={1.3} speed={1.5}>
-          <RepeatedTitle
-            title="about"
-            colorClasses={[
-              "text-red-700",
-              "text-red-800",
-              "text-red-900",
-              "text-red-900",
-            ]}
-            className="ml-36 mt-4"
-          />
-        </ParallaxLayer>
-        <ParallaxLayer offset={1.3} speed={0.5}>
-          <RepeatedTitle
-            title="about"
-            colorClasses={[
-              "text-red-100",
-              "text-red-200",
-              "text-red-300",
-              "text-red-600",
-              "text-red-800",
-            ]}
-            className="ml-60 mt-12"
-          />
-        </ParallaxLayer>
         <ParallaxLayer
           sticky={{
             start: 1.3,
@@ -93,7 +68,7 @@ const Home: NextPage = () => {
         >
           <RepeatedTitle
             title="about"
-            colorClasses={["text-red-100", "text-red-300", "text-red-600"]}
+            colorClasses={["text-white", "text-white", "text-white"]}
             className="ml-12"
           />
         </ParallaxLayer>
@@ -116,31 +91,6 @@ const Home: NextPage = () => {
             ref={lightDanceRef}
           ></div>
         </ParallaxLayer>
-        <ParallaxLayer offset={4.8} speed={1.5}>
-          <RepeatedTitle
-            title="project"
-            colorClasses={[
-              "text-red-700",
-              "text-red-800",
-              "text-red-900",
-              "text-red-900",
-            ]}
-            className="ml-12 mt-4"
-          />
-        </ParallaxLayer>
-        <ParallaxLayer offset={4.8} speed={0.5}>
-          <RepeatedTitle
-            title="project"
-            colorClasses={[
-              "text-red-100",
-              "text-red-200",
-              "text-red-300",
-              "text-red-600",
-              "text-red-800",
-            ]}
-            className="ml-60 mt-12"
-          />
-        </ParallaxLayer>
         <ParallaxLayer
           sticky={{
             start: 4.8,
@@ -149,8 +99,8 @@ const Home: NextPage = () => {
         >
           <RepeatedTitle
             title="project"
-            colorClasses={["text-red-100", "text-red-300", "text-red-600"]}
-            className="ml-36"
+            colorClasses={["text-white", "text-white", "text-white"]}
+            className="ml-12"
           />
         </ParallaxLayer>
         <ParallaxLayer

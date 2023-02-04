@@ -20,7 +20,7 @@ import nodeLogo from "@/assets/images/logos/node-logo.png";
 export const SkillsContent = () => {
   return (
     <Container size="xl">
-      <Title className="mb-8 text-giant text-red-400">skills</Title>
+      <Title className="mb-8 text-giant text-white">skills</Title>
       <Container className="grid grid-cols-5">
         <Cell logo={typescriptLogo} label="typescript" />
         <Cell logo={javascriptLogo} label="javascript" />
