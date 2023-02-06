@@ -42,6 +42,7 @@ export const SkillCell = ({ logo, label, className = "" }: CellProps) => {
           alt={`${label} logo`}
           width={150}
           height={150}
+          priority={true}
           className="drop-shadow-lg"
         />
       </div>

@@ -3,9 +3,9 @@ import { Title } from "@mantine/core";
 import clsx from "clsx";
 
 export interface RepeatedTitleProps {
-  className?: string;
   title: string;
   colorClasses: string[];
+  className?: string;
   size?:
     | "giant"
     | "xl"
@@ -26,15 +26,15 @@ export interface RepeatedTitleProps {
 export const RepeatedTitle = ({
   title,
   colorClasses,
-  className,
-  size,
+  className = "",
+  size = "giant",
 }: RepeatedTitleProps) => {
   return (
     <div className={className}>
       <Title
         className={clsx(
           "whitespace-nowrap py-12 text-vertical",
-          `text-${size ?? "giant"}`
+          `text-${size}`
         )}
       >
         {colorClasses.map((colorClass, index) => (
