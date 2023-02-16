@@ -37,6 +37,7 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "no-console": "warn"
   }
 }

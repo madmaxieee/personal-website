@@ -1,3 +1,5 @@
+import { useRef, useLayoutEffect } from "react";
+
 import * as THREE from "three";
 import type { Font as ThreeFont } from "three/examples/jsm/loaders/FontLoader";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
@@ -8,7 +10,10 @@ export interface ParticleTextProps {
 }
 
 export const ParticleText = ({ text }: ParticleTextProps) => {
-  const containerRef = (ref: HTMLDivElement) => {
+  const containerRef = useRef(null!);
+
+  useLayoutEffect(() => {
+    if (!containerRef.current) return;
     const manager = new THREE.LoadingManager();
 
     let fontFamily: ThreeFont | null = null;
@@ -25,9 +30,9 @@ export const ParticleText = ({ text }: ParticleTextProps) => {
 
     manager.onLoad = () => {
       if (fontFamily !== null)
-        new Environment(fontFamily!, particle, text, ref);
+        new Environment(fontFamily!, particle, text, containerRef.current);
     };
-  };
+  }, [containerRef, text]);
 
   return <div className="h-full w-full" ref={containerRef} />;
 };
