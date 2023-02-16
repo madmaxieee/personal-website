@@ -1,5 +1,6 @@
 import { type AppProps } from "next/app";
 import { Inter } from "@next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 import { api } from "../utils/api";
 
@@ -26,6 +27,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       >
         <Component {...pageProps} />
       </MantineProvider>
+      <Analytics />
     </main>
   );
 };
