@@ -58,12 +58,12 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>madmax</title>
+        <title>madmaxieee</title>
         <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
         <meta
           name="description"
           content={
-            "The personal website of madmax, Max Chuang, a web and software developer. " +
+            "The personal website of madmaxieee, Max Chuang, a web and software developer. " +
             "He is also familiar with ML, AI, and data science. " +
             "He is currently a student at the National Taiwan University studying electrical engineering. " +
             "He have worked on projects such as the Light Dance Editor, a web app the NTUEE light dance team uses to design their light dance performances. " +
