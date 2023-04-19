@@ -1,23 +1,23 @@
-import type { MutableRefObject } from "react";
-import { useState, useRef, useEffect } from "react";
+import type { MutableRefObject } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-import { type NextPage } from "next";
-import Head from "next/head";
-import { clientEnv } from "@/env/schema.mjs";
+import { type NextPage } from 'next';
+import Head from 'next/head';
 
 import {
   Parallax,
   ParallaxLayer,
   type IParallax,
-} from "@react-spring/parallax";
+} from '@react-spring/parallax';
 
-import ParticleText from "@/components/ParticleTexts";
-import BouncingChevron from "@/components/BouncingChevron";
-import RepeatedTitle from "@/components/RepeatedTitle";
-import AboutMeContent from "@/components/AboutMeContent";
-import LightDanceContent from "@/components/ProjectContents/LightDanceContent";
-import SkillsContent from "@/components/SkillsContent";
-import ScrollProgress from "@/components/ScrollProgress";
+import AboutMeContent from '@/components/AboutMeContent';
+import BouncingChevron from '@/components/BouncingChevron';
+import ParticleText from '@/components/ParticleTexts';
+import LightDanceContent from '@/components/ProjectContents/LightDanceContent';
+import RepeatedTitle from '@/components/RepeatedTitle';
+import ScrollProgress from '@/components/ScrollProgress';
+import SkillsContent from '@/components/SkillsContent';
+import { clientEnv } from '@/env/schema.mjs';
 
 const TOTAL_PAGES = 11;
 
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
     if (parallax) {
       (
         parallax.container as MutableRefObject<HTMLDivElement>
-      ).current.addEventListener("scroll", handleScroll);
+      ).current.addEventListener('scroll', handleScroll);
     }
 
     return () => {
@@ -50,7 +50,7 @@ const Home: NextPage = () => {
       if (parallax) {
         (
           parallax.container as MutableRefObject<HTMLDivElement>
-        ).current.removeEventListener("scroll", handleScroll);
+        ).current.removeEventListener('scroll', handleScroll);
       }
     };
   }, []);
@@ -63,13 +63,17 @@ const Home: NextPage = () => {
         <meta
           name="description"
           content={
-            "The personal website of madmaxieee, Max Chuang, a web and software developer. " +
-            "He is also familiar with ML, AI, and data science. " +
-            "He is currently a student at the National Taiwan University studying electrical engineering. " +
-            "He have worked on projects such as the Light Dance Editor, a web app the NTUEE light dance team uses to design their light dance performances. " +
-            "He is also working freelance as a web developer in the past year. " +
-            "He is looking for a software engineering internship for summer 2023."
+            'The personal website of madmaxieee, Max Chuang, a web and software developer. ' +
+            'He is also familiar with ML, AI, and data science. ' +
+            'He is currently a student at the National Taiwan University studying electrical engineering. ' +
+            'He have worked on projects such as the Light Dance Editor, a web app the NTUEE light dance team uses to design their light dance performances. ' +
+            'He is also working freelance as a web developer in the past year. ' +
+            'He is looking for a software engineering internship for summer 2023.'
           }
+        />
+        <meta
+          name="keywords"
+          content="莊加旭,madmaxieee,Max Chuang,NTUEE,NTU,Software Engineer,Web Developer,ML Engineer,freelance,Light Dance"
         />
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={clientEnv.NEXT_PUBLIC_DOMAIN} />
@@ -111,7 +115,7 @@ const Home: NextPage = () => {
         >
           <RepeatedTitle
             title="about"
-            colorClasses={["text-white", "text-white", "text-white"]}
+            colorClasses={['text-white', 'text-white', 'text-white']}
             className="ml-12"
           />
         </ParallaxLayer>
@@ -139,7 +143,7 @@ const Home: NextPage = () => {
         >
           <RepeatedTitle
             title="project"
-            colorClasses={["text-white", "text-white", "text-white"]}
+            colorClasses={['text-white', 'text-white', 'text-white']}
             className="ml-12"
           />
         </ParallaxLayer>

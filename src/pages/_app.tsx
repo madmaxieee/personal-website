@@ -1,17 +1,16 @@
-import { type AppProps } from "next/app";
-import { Inter } from "@next/font/google";
-import { Analytics } from "@vercel/analytics/react";
+import { type AppProps } from 'next/app';
 
-import { api } from "../utils/api";
+import '../styles/globals.css';
+import { api } from '../utils/api';
 
-import "../styles/globals.css";
-
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider } from '@mantine/core';
+import { Inter } from '@next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["400", "500", "700"],
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: ['400', '500', '700'],
 });
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -22,7 +21,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         withGlobalStyles
         withCSSVariables
         theme={{
-          colorScheme: "dark",
+          colorScheme: 'dark',
         }}
       >
         <Component {...pageProps} />

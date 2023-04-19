@@ -1,15 +1,14 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-import { Text, Container } from "@mantine/core";
+import { Text, Container } from '@mantine/core';
 import {
   IconWorld,
   IconBrandGithub,
   IconBrandYoutube,
-} from "@tabler/icons-react";
+} from '@tabler/icons-react';
 
-import logo from "@/assets/images/LightDanceLogo.png";
-
-import LinkButton from "@/components/LinkButton";
+import logo from '@/assets/images/LightDanceLogo.png';
+import LinkButton from '@/components/LinkButton';
 
 export const LightDanceContent = () => {
   return (

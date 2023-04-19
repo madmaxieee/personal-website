@@ -1,21 +1,20 @@
-import { Container, Title } from "@mantine/core";
+import { Container, Title } from '@mantine/core';
 
-import Cell from "@/components/SkillCell";
-
-import pythonLogo from "@/assets/images/logos/python-logo.png";
-import reactLogo from "@/assets/images/logos/react-logo.png";
-import nextLogo from "@/assets/images/logos/next-logo.png";
-import tailwindLogo from "@/assets/images/logos/tailwind-logo.png";
-import typescriptLogo from "@/assets/images/logos/ts-logo.png";
-import javascriptLogo from "@/assets/images/logos/js-logo.png";
-import gitLogo from "@/assets/images/logos/git-logo.png";
-import goLogo from "@/assets/images/logos/go-logo.png";
-import cppLogo from "@/assets/images/logos/cpp-logo.png";
-import dockerLogo from "@/assets/images/logos/docker-logo.png";
-import pytorchLogo from "@/assets/images/logos/pytorch-logo.png";
-import htmlLogo from "@/assets/images/logos/html-logo.png";
-import cssLogo from "@/assets/images/logos/css-logo.png";
-import nodeLogo from "@/assets/images/logos/node-logo.png";
+import cppLogo from '@/assets/images/logos/cpp-logo.png';
+import cssLogo from '@/assets/images/logos/css-logo.png';
+import dockerLogo from '@/assets/images/logos/docker-logo.png';
+import gitLogo from '@/assets/images/logos/git-logo.png';
+import goLogo from '@/assets/images/logos/go-logo.png';
+import htmlLogo from '@/assets/images/logos/html-logo.png';
+import javascriptLogo from '@/assets/images/logos/js-logo.png';
+import nextLogo from '@/assets/images/logos/next-logo.png';
+import nodeLogo from '@/assets/images/logos/node-logo.png';
+import pythonLogo from '@/assets/images/logos/python-logo.png';
+import pytorchLogo from '@/assets/images/logos/pytorch-logo.png';
+import reactLogo from '@/assets/images/logos/react-logo.png';
+import tailwindLogo from '@/assets/images/logos/tailwind-logo.png';
+import typescriptLogo from '@/assets/images/logos/ts-logo.png';
+import Cell from '@/components/SkillCell';
 
 export const SkillsContent = () => {
   return (

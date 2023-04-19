@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
-import type { DefaultMantineColor } from "@mantine/core";
-import { Button } from "@mantine/core";
+import type { DefaultMantineColor } from '@mantine/core';
+import { Button } from '@mantine/core';
 
 export interface LinkButtonProps {
   href: string;

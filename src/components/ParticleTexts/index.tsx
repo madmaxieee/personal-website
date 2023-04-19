@@ -1,9 +1,10 @@
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect } from 'react';
 
-import * as THREE from "three";
-import type { Font as ThreeFont } from "three/examples/jsm/loaders/FontLoader";
-import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
-import Environment from "./particleEngine";
+import * as THREE from 'three';
+import type { Font as ThreeFont } from 'three/examples/jsm/loaders/FontLoader';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
+
+import Environment from './particleEngine';
 
 export interface ParticleTextProps {
   text: string;
@@ -18,14 +19,14 @@ export const ParticleText = ({ text }: ParticleTextProps) => {
 
     let fontFamily: ThreeFont | null = null;
     new FontLoader(manager).load(
-      "/assets/fonts/PoiretOne_Regular.json",
+      '/assets/fonts/PoiretOne_Regular.json',
       (responseFont) => {
         fontFamily = responseFont;
       }
     );
 
     const particle = new THREE.TextureLoader(manager).load(
-      "/assets/images/particle.png"
+      '/assets/images/particle.png'
     );
 
     manager.onLoad = () => {

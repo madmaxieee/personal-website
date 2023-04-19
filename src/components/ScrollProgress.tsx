@@ -1,4 +1,4 @@
-import { useSpring, animated } from "@react-spring/web";
+import { useSpring, animated } from '@react-spring/web';
 
 export interface ScrollProgressProps {
   progress: number;

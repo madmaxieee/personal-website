@@ -1,4 +1,18 @@
-/** @type {import("prettier").Config} */
-module.exports = {
-  plugins: [require.resolve("prettier-plugin-tailwindcss")],
+const config = {
+  plugins: [
+    require.resolve('@trivago/prettier-plugin-sort-imports'),
+    require.resolve('prettier-plugin-tailwindcss'),
+  ],
+  importOrder: [
+    '^react',
+    '^next',
+    '<THIRD_PARTY_MODULES>',
+    '^@w+\\w',
+    '^@\\w',
+    '^./',
+  ],
+  importOrderSeparation: true,
+  singleQuote: true,
 };
+
+module.exports = config;

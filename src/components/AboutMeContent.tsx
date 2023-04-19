@@ -1,16 +1,15 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-import { Text, Container } from "@mantine/core";
+import { Text, Container } from '@mantine/core';
 import {
   IconMail,
   IconDownload,
   IconBrandGithub,
   IconBrandLinkedin,
-} from "@tabler/icons-react";
+} from '@tabler/icons-react';
 
-import avatar from "@/assets/images/avatar.png";
-
-import LinkButton from "@/components/LinkButton";
+import avatar from '@/assets/images/avatar.png';
+import LinkButton from '@/components/LinkButton';
 
 export const AboutMeContent = () => {
   return (

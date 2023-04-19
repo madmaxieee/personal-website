@@ -1,11 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
-import type { StaticImageData } from "next/image";
-import Image from "next/image";
+import type { StaticImageData } from 'next/image';
+import Image from 'next/image';
 
-import { Title } from "@mantine/core";
+import VanillaTilt from 'vanilla-tilt';
 
-import VanillaTilt from "vanilla-tilt";
+import { Title } from '@mantine/core';
 
 interface CellProps {
   logo: StaticImageData;
@@ -13,7 +13,7 @@ interface CellProps {
   className?: string;
 }
 
-export const SkillCell = ({ logo, label, className = "" }: CellProps) => {
+export const SkillCell = ({ logo, label, className = '' }: CellProps) => {
   const tiltRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const SkillCell = ({ logo, label, className = "" }: CellProps) => {
         max: 20,
         speed: 100,
         glare: true,
-        "max-glare": 0.3,
+        'max-glare': 0.3,
       });
   }, []);
 
@@ -33,7 +33,7 @@ export const SkillCell = ({ logo, label, className = "" }: CellProps) => {
     >
       <div
         className={
-          "grid h-[120px] w-[120px] place-content-center rounded-lg bg-gray-100/70 p-2 backdrop-blur-lg " +
+          'grid h-[120px] w-[120px] place-content-center rounded-lg bg-gray-100/70 p-2 backdrop-blur-lg ' +
           className
         }
       >

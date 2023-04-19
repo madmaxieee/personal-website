@@ -1,5 +1,5 @@
-import * as THREE from "three";
-import type { Font as ThreeFont } from "three/examples/jsm/loaders/FontLoader";
+import * as THREE from 'three';
+import type { Font as ThreeFont } from 'three/examples/jsm/loaders/FontLoader';
 
 const cyrb53 = function (str: string, seed = 0) {
   let h1 = 0xdeadbeef ^ seed,
@@ -18,7 +18,7 @@ const cyrb53 = function (str: string, seed = 0) {
   return 4294967296 * (2097151 & h2) + (h1 >>> 0);
 };
 
-const random = (num: number, range = 1, seed = "hash") => {
+const random = (num: number, range = 1, seed = 'hash') => {
   const rand = (cyrb53(seed, num) % 1_000_000) / 1_000_000;
   if (range === 1) return rand;
   return Math.round(rand * range);
@@ -83,7 +83,7 @@ export default class Environment {
   }
 
   bindEvents() {
-    window.addEventListener("resize", this.onWindowResize.bind(this));
+    window.addEventListener('resize', this.onWindowResize.bind(this));
   }
 
   render() {
@@ -195,9 +195,9 @@ class CreateParticles {
   }
 
   bindEvents() {
-    document.addEventListener("mousedown", this.onMouseDown.bind(this));
-    document.addEventListener("mousemove", this.onMouseMove.bind(this));
-    document.addEventListener("mouseup", this.onMouseUp.bind(this));
+    document.addEventListener('mousedown', this.onMouseDown.bind(this));
+    document.addEventListener('mousemove', this.onMouseMove.bind(this));
+    document.addEventListener('mouseup', this.onMouseUp.bind(this));
   }
 
   onMouseDown(event: MouseEvent) {
@@ -464,11 +464,11 @@ class CreateParticles {
     geoParticles.translate(xMid, yMid, 0);
 
     geoParticles.setAttribute(
-      "customColor",
+      'customColor',
       new THREE.Float32BufferAttribute(colors, 3)
     );
     geoParticles.setAttribute(
-      "size",
+      'size',
       new THREE.Float32BufferAttribute(sizes, 1)
     );
 
