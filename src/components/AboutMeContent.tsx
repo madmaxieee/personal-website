@@ -39,7 +39,7 @@ export const AboutMeContent = () => {
             Visit GitHub
           </LinkButton>
           <LinkButton
-            href="www.linkedin.com/in/chuangjiaxu"
+            href="https://www.linkedin.com/in/chuangjiaxu"
             color="red"
             icon={<IconBrandLinkedin />}
           >
