@@ -15,19 +15,21 @@ const inter = Inter({
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <main className={`${inter.variable} font-sans`}>
-      <MantineProvider
-        withNormalizeCSS
-        withGlobalStyles
-        withCSSVariables
-        theme={{
-          colorScheme: 'dark',
-        }}
-      >
-        <Component {...pageProps} />
-      </MantineProvider>
+    <>
+      <main className={`${inter.variable} font-sans`}>
+        <MantineProvider
+          withNormalizeCSS
+          withGlobalStyles
+          withCSSVariables
+          theme={{
+            colorScheme: 'dark',
+          }}
+        >
+          <Component {...pageProps} />
+        </MantineProvider>
+      </main>
       <Analytics />
-    </main>
+    </>
   );
 };
 
