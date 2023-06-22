@@ -60,23 +60,39 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>madmaxieee</title>
+        <title>madmaxieee | 莊加旭</title>
         <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
         <meta
           name="description"
           content={
-            'The personal website of madmaxieee, Max Chuang, a web and software developer. ' +
+            'The personal website of madmaxieee, Max Chuang, 莊加旭 a web and software developer. ' +
             'He is also familiar with ML, AI, and data science. ' +
             'He is currently a student at the National Taiwan University studying electrical engineering. ' +
-            'He have worked on projects such as the Light Dance Editor, a web app the NTUEE light dance team uses to design their light dance performances. ' +
-            'He is also working freelance as a web developer in the past year. ' +
-            'He is looking for a software engineering internship for summer 2023.'
+            'He is also working freelance as a web developer in the past year. '
           }
         />
         <meta
           name="keywords"
           content="莊加旭,madmaxieee,Max Chuang,NTUEE,NTU,Software Engineer,Web Developer,ML Engineer,freelance,Light Dance"
         />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="madmaxieee | 莊加旭" />
+        <meta
+          property="og:description"
+          content="The personal website of madmaxieee, Max Chuang, 莊加旭, a web and software developer."
+        />
+        <meta
+          property="og:image"
+          content={clientEnv.NEXT_PUBLIC_DOMAIN + '/madmax-og.png'}
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="madmaxieee | 莊加旭" />
+        <meta property="og:site_name" content="madmaxieee | 莊加旭" />
+        <meta property="og:url" content={clientEnv.NEXT_PUBLIC_DOMAIN} />
+        <meta property="og:locale" content="en_US" />
+
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={clientEnv.NEXT_PUBLIC_DOMAIN} />
       </Head>
