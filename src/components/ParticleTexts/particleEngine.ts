@@ -1,29 +1,16 @@
 import * as THREE from 'three';
 import type { Font as ThreeFont } from 'three/examples/jsm/loaders/FontLoader';
 
-const cyrb53 = function (str: string, seed = 0) {
-  let h1 = 0xdeadbeef ^ seed,
-    h2 = 0x41c6ce57 ^ seed;
-  for (let i = 0, ch; i < str.length; i++) {
-    ch = str.charCodeAt(i);
-    h1 = Math.imul(h1 ^ ch, 2654435761);
-    h2 = Math.imul(h2 ^ ch, 1597334677);
-  }
-  h1 =
-    Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
-    Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-  h2 =
-    Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
-    Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-  return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+type ParticleTextConfig = {
+  font: ThreeFont;
+  texture: THREE.Texture;
+  text: string;
+  container: HTMLElement;
+  fontSize?: number;
+  amount?: number;
+  particleSize?: number;
+  radiusScale?: number;
 };
-
-const random = (num: number, range = 1, seed = 'hash') => {
-  const rand = (cyrb53(seed, num) % 1_000_000) / 1_000_000;
-  if (range === 1) return rand;
-  return Math.round(rand * range);
-};
-
 export default class Environment {
   particle: THREE.Texture;
   font: ThreeFont;
@@ -31,19 +18,14 @@ export default class Environment {
   container: HTMLElement;
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
-  createParticles: CreateParticles;
+  particleRenderer: ParticleRenderer;
   renderer: THREE.WebGLRenderer;
 
-  constructor(
-    font: ThreeFont,
-    particle: THREE.Texture,
-    text: string,
-    container: HTMLElement
-  ) {
-    this.font = font;
-    this.text = text;
-    this.particle = particle;
-    this.container = container;
+  constructor(config: ParticleTextConfig) {
+    this.font = config.font;
+    this.text = config.text;
+    this.particle = config.texture;
+    this.container = config.container;
     this.scene = new THREE.Scene();
 
     this.camera = new THREE.PerspectiveCamera(
@@ -69,13 +51,19 @@ export default class Environment {
       this.render();
     });
 
-    this.createParticles = new CreateParticles(
+    this.particleRenderer = new ParticleRenderer(
       this.scene,
       this.font,
       this.particle,
       this.camera,
       this.renderer,
-      this.text
+      this.text,
+      {
+        fontSize: config.fontSize,
+        amount: config.amount,
+        particleSize: config.particleSize,
+        radiusScale: config.radiusScale,
+      }
     );
 
     this.bindEvents();
@@ -87,7 +75,7 @@ export default class Environment {
   }
 
   render() {
-    this.createParticles.render();
+    this.particleRenderer.render();
     this.renderer.render(this.scene, this.camera);
   }
 
@@ -102,12 +90,26 @@ export default class Environment {
       );
     }
   }
+
+  destroy() {
+    window.removeEventListener('resize', this.onWindowResize.bind(this));
+    this.renderer.dispose();
+    this.particle.dispose();
+    this.particleRenderer.destroy();
+  }
 }
 
 const bgParticleColorHSL: [number, number, number] = [0, 0.73, 0.53];
 const foregroundColorHSL: [number, number, number] = [0, 1, 1];
 
-class CreateParticles {
+type ParticleRendererConfig = {
+  fontSize?: number;
+  amount?: number;
+  particleSize?: number;
+  radiusScale?: number;
+};
+
+class ParticleRenderer {
   scene: THREE.Scene;
   font: ThreeFont;
   particleImg: THREE.Texture;
@@ -144,7 +146,8 @@ class CreateParticles {
     particleImg: THREE.Texture,
     camera: THREE.PerspectiveCamera,
     renderer: THREE.WebGLRenderer,
-    text: string
+    text: string,
+    config: ParticleRendererConfig
   ) {
     this.scene = scene;
     this.font = font;
@@ -157,16 +160,19 @@ class CreateParticles {
     this.raycaster = new THREE.Raycaster();
 
     this.mouse = new THREE.Vector2(100, 100);
+
+    const radiusScale = config.radiusScale || 1;
+    console.log(radiusScale);
     this.attribute = {
-      amount: 600,
-      particleSize: 1.5,
+      amount: config.amount || 600,
+      particleSize: config.particleSize || 1.5,
       particleColor: 0xffffff,
-      textSize: 24,
+      textSize: config.fontSize || 24,
       force: 50,
       ease: 0.05,
-      radius1: 50,
-      radius2: 70,
-      radius3: 10,
+      radius1: 50 * radiusScale,
+      radius2: 70 * radiusScale,
+      radius3: 10 * radiusScale,
       bgParticleColorHSL: [0, 0.73, 0.53],
       foregroundColorHSL: [0, 1, 1],
     };
@@ -530,4 +536,34 @@ class CreateParticles {
   distance(x1: number, y1: number, x2: number, y2: number) {
     return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
   }
+
+  destroy() {
+    this.renderer.dispose();
+    this.geometryCopy.dispose();
+    this.particles.geometry.dispose();
+    this.particleImg.dispose();
+  }
+}
+
+function cyrb53(str: string, seed = 42069) {
+  let h1 = 0xdeadbeef ^ seed,
+    h2 = 0x41c6ce57 ^ seed;
+  for (let i = 0, ch; i < str.length; i++) {
+    ch = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 =
+    Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
+    Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 =
+    Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
+    Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+}
+
+function random(num: number, range = 1, seed = 'madmaxieee') {
+  const rand = (cyrb53(seed, num) % 1_000_000) / 1_000_000;
+  if (range === 1) return rand;
+  return Math.round(rand * range);
 }

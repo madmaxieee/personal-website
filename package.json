@@ -33,6 +33,7 @@
     "react-icons": "^4.7.1",
     "sharp": "^0.31.3",
     "superjson": "1.9.1",
+    "tailwind-merge": "^1.13.2",
     "three": "^0.149.0",
     "vanilla-tilt": "^1.8.0",
     "zod": "^3.20.6"
@@ -50,8 +51,6 @@
     "autoprefixer": "^10.4.13",
     "eslint": "^8.34.0",
     "eslint-config-next": "13.1.6",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-prettier": "^4.2.1",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.3",
