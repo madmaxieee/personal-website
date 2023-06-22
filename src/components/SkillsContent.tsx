@@ -19,17 +19,19 @@ import Cell from '@/components/SkillCell';
 export const SkillsContent = () => {
   return (
     <Container size="xl">
-      <Title className="mb-8 text-giant text-white">skills</Title>
-      <Container className="grid grid-cols-5">
+      <Title className="mb-8 text-giant text-white max-md:mb-4 max-md:pt-4 max-md:text-7xl">
+        skills
+      </Title>
+      <Container className="grid grid-cols-5 max-md:grid-cols-3">
         <Cell logo={typescriptLogo} label="typescript" />
         <Cell logo={javascriptLogo} label="javascript" />
         <Cell logo={reactLogo} label="react" />
         <Cell logo={nextLogo} label="next.js" />
         <Cell logo={htmlLogo} label="html" />
         <Cell logo={cssLogo} label="css" />
-        <Cell logo={tailwindLogo} label="tailwind css" />
+        <Cell logo={tailwindLogo} label="tailwind" />
         <Cell logo={pythonLogo} label="python" />
-        <Cell logo={pytorchLogo} label="pytorch" />
+        <Cell logo={pytorchLogo} label="PyTorch" />
         <Cell logo={goLogo} label="go" />
         <Cell logo={cppLogo} label="c++" />
         <Cell logo={nodeLogo} label="node.js" />

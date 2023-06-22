@@ -8,9 +8,10 @@ export interface LinkButtonProps {
   color: DefaultMantineColor;
   children: ReactNode;
   icon?: ReactNode;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export const LinkButton = ({ href, icon, children }: LinkButtonProps) => {
+export const LinkButton = ({ href, icon, children, size }: LinkButtonProps) => {
   return (
     <Button
       component="a"
@@ -20,6 +21,8 @@ export const LinkButton = ({ href, icon, children }: LinkButtonProps) => {
       color="red"
       variant="outline"
       leftIcon={icon}
+      size={size ?? 'sm'}
+      className="backdrop-blur-sm"
     >
       {children}
     </Button>

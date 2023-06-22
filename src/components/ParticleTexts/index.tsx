@@ -6,17 +6,20 @@ import type { Font as ThreeFont } from 'three/examples/jsm/loaders/FontLoader';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 
 import Environment from './particleEngine';
-import useIsMobile from '@/hooks/useIsMobile';
 import { cn } from '@/utils/cn';
 
 export interface ParticleTextProps {
   text: string;
+  isMobile?: boolean;
   className?: ClassValue;
 }
 
-export const ParticleText = ({ text, className }: ParticleTextProps) => {
+export const ParticleText = ({
+  text,
+  className,
+  isMobile,
+}: ParticleTextProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
 
   useLayoutEffect(() => {
     if (!containerRef.current) return;

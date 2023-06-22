@@ -18,12 +18,14 @@ import RepeatedTitle from '@/components/RepeatedTitle';
 import ScrollProgress from '@/components/ScrollProgress';
 import SkillsContent from '@/components/SkillsContent';
 import { clientEnv } from '@/env/schema.mjs';
+import useIsMobile from '@/hooks/useIsMobile';
 
 const TOTAL_PAGES = 11;
 
 const Home: NextPage = () => {
   const parallaxRef = useRef<IParallax>(null);
   const [progress, setProgress] = useState(0);
+  const isMobile = useIsMobile();
 
   const scrollTo = (offset: number) => {
     if (parallaxRef.current) {
@@ -90,9 +92,9 @@ const Home: NextPage = () => {
       >
         {/* background */}
         <ParallaxLayer sticky={{ start: 0, end: 6 }}>
-          <ParticleText text="madmax" />
+          <ParticleText isMobile={isMobile} text="madmax" />
           <button
-            className="absolute top-3/4 grid w-full cursor-pointer place-items-center p-12"
+            className="absolute top-3/4 grid w-full cursor-pointer place-items-center p-12 max-md:p-8"
             onClick={() => {
               scrollTo(1);
             }}
@@ -116,7 +118,7 @@ const Home: NextPage = () => {
           <RepeatedTitle
             title="about"
             colorClasses={['text-white', 'text-white', 'text-white']}
-            className="ml-12"
+            className="ml-12 max-md:ml-4"
           />
         </ParallaxLayer>
         <ParallaxLayer
@@ -124,7 +126,7 @@ const Home: NextPage = () => {
           className="grid h-full w-full place-items-center"
         >
           <div className="top-1/5 relative -z-10 h-4/5 w-full">
-            <AboutMeContent />
+            <AboutMeContent isMobile={isMobile} />
           </div>
         </ParallaxLayer>
         {/* projects */}
@@ -144,7 +146,7 @@ const Home: NextPage = () => {
           <RepeatedTitle
             title="project"
             colorClasses={['text-white', 'text-white', 'text-white']}
-            className="ml-12"
+            className="ml-12 max-md:ml-4"
           />
         </ParallaxLayer>
         <ParallaxLayer
@@ -152,7 +154,7 @@ const Home: NextPage = () => {
           className="grid h-full w-full place-items-center"
         >
           <div className="top-1/5 relative h-4/5 w-full">
-            <LightDanceContent />
+            <LightDanceContent isMobile={isMobile} />
           </div>
         </ParallaxLayer>
         {/* skills */}

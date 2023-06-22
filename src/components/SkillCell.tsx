@@ -7,6 +7,8 @@ import VanillaTilt from 'vanilla-tilt';
 
 import { Title } from '@mantine/core';
 
+import { cn } from '@/utils/cn';
+
 interface CellProps {
   logo: StaticImageData;
   label: string;
@@ -23,19 +25,21 @@ export const SkillCell = ({ logo, label, className = '' }: CellProps) => {
         speed: 100,
         glare: true,
         'max-glare': 0.3,
+        easing: 'cubic-bezier(.03,.98,.52,.99)',
       });
   }, []);
 
   return (
     <div
-      className="grid w-full place-content-center rounded-2xl p-2 py-4"
+      className="grid w-full place-content-center rounded-2xl p-2 py-4 max-md:py-2"
       ref={tiltRef}
     >
       <div
-        className={
-          'grid h-[120px] w-[120px] place-content-center rounded-lg bg-gray-100/70 p-2 backdrop-blur-lg ' +
+        className={cn(
+          'grid h-[120px] w-[120px] place-content-center rounded-lg bg-gray-100/30 p-4 backdrop-blur-lg',
+          'max-md:h-24 max-md:w-24',
           className
-        }
+        )}
       >
         <Image
           src={logo}
@@ -43,10 +47,9 @@ export const SkillCell = ({ logo, label, className = '' }: CellProps) => {
           width={150}
           height={150}
           priority={true}
-          className="drop-shadow-lg"
         />
       </div>
-      <Title order={3} className="pt-2 text-center">
+      <Title order={3} className="pt-2 text-center max-md:text-lg">
         {label}
       </Title>
     </div>
