@@ -162,7 +162,6 @@ class ParticleRenderer {
     this.mouse = new THREE.Vector2(100, 100);
 
     const radiusScale = config.radiusScale || 1;
-    console.log(radiusScale);
     this.attribute = {
       amount: config.amount || 600,
       particleSize: config.particleSize || 1.5,

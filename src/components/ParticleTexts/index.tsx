@@ -68,7 +68,9 @@ export const ParticleText = ({
     };
 
     return () => {
-      manager.onLoad = () => {};
+      manager.onLoad = () => {
+        return;
+      };
       env?.destroy();
     };
   }, [containerRef, text, isMobile]);

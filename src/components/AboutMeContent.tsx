@@ -10,7 +10,6 @@ import {
 
 import avatar from '@/assets/images/avatar.png';
 import LinkButton from '@/components/LinkButton';
-import useIsMobile from '@/hooks/useIsMobile';
 import { cn } from '@/utils/cn';
 
 type AboutMeContentProps = {
