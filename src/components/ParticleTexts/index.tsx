@@ -73,7 +73,7 @@ export const ParticleText = ({
       };
       env?.destroy();
     };
-  }, [containerRef, text, isMobile]);
+  }, [isMobile, text]);
 
   return <div className={cn('h-full w-full', className)} ref={containerRef} />;
 };
