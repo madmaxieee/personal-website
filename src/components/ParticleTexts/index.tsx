@@ -44,7 +44,7 @@ export const ParticleText = ({
 
     let fontFamily: ThreeFont | null = null;
     new FontLoader(manager).load(
-      "/assets/fonts/Geist-Medium.json",
+      "/assets/fonts/PoiretOne_Regular.json",
       (responseFont) => {
         fontFamily = responseFont;
       }
