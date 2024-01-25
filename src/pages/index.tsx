@@ -20,7 +20,10 @@ import SkillsContent from '@/components/SkillsContent';
 import { clientEnv } from '@/env/schema.mjs';
 import useIsMobile from '@/hooks/useIsMobile';
 
-const TOTAL_PAGES = 11;
+const LIGHT_DANCE_OFFSET = 4.5;
+const GUESS_THE_LYRICS_OFFSET = LIGHT_DANCE_OFFSET + 3;
+const SKILLS_OFFSET = GUESS_THE_LYRICS_OFFSET + 3;
+const TOTAL_PAGES = SKILLS_OFFSET + 3;
 
 const Home: NextPage = () => {
   const parallaxRef = useRef<IParallax>(null);
@@ -147,40 +150,83 @@ const Home: NextPage = () => {
         </ParallaxLayer>
         {/* projects */}
         {/* light dance */}
-        <ParallaxLayer
-          sticky={{ start: 4.5, end: 6 }}
-          className="grid h-full w-full place-items-center"
-        >
-          <div className="top-1/5 relative -z-10 h-4/5 w-full bg-slate-400/20 backdrop-blur-xl"></div>
-        </ParallaxLayer>
-        <ParallaxLayer
-          sticky={{
-            start: 4.8,
-            end: 5.2,
-          }}
-        >
-          <RepeatedTitle
-            title="project"
-            colorClasses={['text-white', 'text-white', 'text-white']}
-            className="ml-12 max-md:ml-4"
-          />
-        </ParallaxLayer>
-        <ParallaxLayer
-          sticky={{ start: 4.5, end: 6 }}
-          className="grid h-full w-full place-items-center"
-        >
-          <div className="top-1/5 relative h-4/5 w-full">
-            <LightDanceContent isMobile={isMobile} />
-          </div>
-        </ParallaxLayer>
+        <>
+          <ParallaxLayer
+            sticky={{
+              start: LIGHT_DANCE_OFFSET,
+              end: LIGHT_DANCE_OFFSET + 1.5,
+            }}
+            className="grid h-full w-full place-items-center"
+          >
+            <div className="top-1/5 relative -z-10 h-4/5 w-full bg-slate-400/20 backdrop-blur-xl"></div>
+          </ParallaxLayer>
+          <ParallaxLayer
+            sticky={{
+              start: LIGHT_DANCE_OFFSET + 0.3,
+              end: LIGHT_DANCE_OFFSET + 0.7,
+            }}
+          >
+            <RepeatedTitle
+              title="project"
+              colorClasses={['text-white', 'text-white', 'text-white']}
+              className="ml-12 max-md:ml-4"
+            />
+          </ParallaxLayer>
+          <ParallaxLayer
+            sticky={{
+              start: LIGHT_DANCE_OFFSET,
+              end: LIGHT_DANCE_OFFSET + 1.5,
+            }}
+            className="grid h-full w-full place-items-center"
+          >
+            <div className="top-1/5 relative h-4/5 w-full">
+              <LightDanceContent isMobile={isMobile} />
+            </div>
+          </ParallaxLayer>
+        </>
+        {/* guess the lyrics */}
+        <>
+          <ParallaxLayer
+            sticky={{
+              start: GUESS_THE_LYRICS_OFFSET,
+              end: GUESS_THE_LYRICS_OFFSET + 1.5,
+            }}
+            className="grid h-full w-full place-items-center"
+          >
+            <div className="top-1/5 relative -z-10 h-4/5 w-full bg-slate-400/20 backdrop-blur-xl"></div>
+          </ParallaxLayer>
+          <ParallaxLayer
+            sticky={{
+              start: GUESS_THE_LYRICS_OFFSET + 0.3,
+              end: GUESS_THE_LYRICS_OFFSET + 0.7,
+            }}
+          >
+            <RepeatedTitle
+              title="project"
+              colorClasses={['text-white', 'text-white', 'text-white']}
+              className="ml-12 max-md:ml-4"
+            />
+          </ParallaxLayer>
+          <ParallaxLayer
+            sticky={{
+              start: GUESS_THE_LYRICS_OFFSET,
+              end: GUESS_THE_LYRICS_OFFSET + 1.5,
+            }}
+            className="grid h-full w-full place-items-center"
+          >
+            <div className="top-1/5 relative h-4/5 w-full">
+              <LightDanceContent isMobile={isMobile} />
+            </div>
+          </ParallaxLayer>
+        </>
         {/* skills */}
-        <ParallaxLayer offset={7}>
+        <ParallaxLayer offset={SKILLS_OFFSET}>
           <div className="h-full bg-gradient-to-b from-black to-[var(--mantine-color-dark-7)]"></div>
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{
-            start: 8.3,
-            end: 10,
+            start: SKILLS_OFFSET + 1.3,
+            end: SKILLS_OFFSET + 3,
           }}
         >
           <SkillsContent />
