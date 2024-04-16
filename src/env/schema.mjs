@@ -1,12 +1,12 @@
 // @ts-check
-import { z } from 'zod';
+import { z } from "zod";
 
 /**
  * Specify your server-side environment variables schema here.
  * This way you can ensure the app isn't built with invalid env vars.
  */
 export const serverSchema = z.object({
-  NODE_ENV: z.enum(['development', 'test', 'production']),
+  NODE_ENV: z.enum(["development", "test", "production"]),
 });
 
 /**
@@ -25,7 +25,6 @@ export const serverEnv = {
  */
 export const clientSchema = z.object({
   NEXT_PUBLIC_DOMAIN: z.string(),
-  NEXT_PUBLIC_GTM_ID: z.string().regex(/^GTM-[A-Z0-9]{7}$/),
 });
 
 /**
@@ -36,5 +35,4 @@ export const clientSchema = z.object({
  */
 export const clientEnv = {
   NEXT_PUBLIC_DOMAIN: process.env.NEXT_PUBLIC_DOMAIN,
-  NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
 };
