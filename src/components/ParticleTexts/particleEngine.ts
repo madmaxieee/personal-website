@@ -44,7 +44,6 @@ export default class Environment {
 
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.container.appendChild(this.renderer.domElement);
 
     this.renderer.setAnimationLoop(() => {

@@ -1,10 +1,12 @@
-import Environment from "./particleEngine";
-import { cn } from "@/utils/cn";
-import type { ClassValue } from "clsx";
-import { useRef, useLayoutEffect } from "react";
-import * as THREE from "three";
-import type { Font as ThreeFont } from "three/examples/jsm/loaders/FontLoader";
-import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
+import { useRef, useLayoutEffect } from 'react';
+
+import type { ClassValue } from 'clsx';
+import * as THREE from 'three';
+import type { Font as ThreeFont } from 'three/examples/jsm/loaders/FontLoader';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
+
+import Environment from './particleEngine';
+import { cn } from '@/utils/cn';
 
 const mobileConfig = {
   fontSize: 10,
@@ -36,7 +38,7 @@ export const ParticleText = ({
   useLayoutEffect(() => {
     if (!containerRef.current) return;
 
-    containerRef.current.innerHTML = "";
+    containerRef.current.innerHTML = '';
 
     let env: Environment;
 
@@ -44,18 +46,18 @@ export const ParticleText = ({
 
     let fontFamily: ThreeFont | null = null;
     new FontLoader(manager).load(
-      "/assets/fonts/PoiretOne_Regular.json",
+      '/assets/fonts/PoiretOne_Regular.json',
       (responseFont) => {
         fontFamily = responseFont;
       }
     );
 
     const particle = new THREE.TextureLoader(manager).load(
-      "/assets/images/particle.png"
+      '/assets/images/particle.png'
     );
     manager.onLoad = () => {
       if (!fontFamily) {
-        console.error("Font not loaded");
+        console.error('Font not loaded');
         return;
       }
       env = new Environment({
@@ -78,7 +80,7 @@ export const ParticleText = ({
   return (
     <div
       id="particle-text"
-      className={cn("h-full w-full", className)}
+      className={cn('h-full w-full', className)}
       ref={containerRef}
     />
   );

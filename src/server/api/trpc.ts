@@ -16,7 +16,6 @@
  * processing a request
  *
  */
-import superjson from 'superjson';
 
 /**
  * 2. INITIALIZATION
@@ -24,6 +23,8 @@ import superjson from 'superjson';
  * This is where the trpc api is initialized, connecting the context and
  * transformer
  */
+import superjson from 'superjson';
+
 import { initTRPC } from '@trpc/server';
 import { type CreateNextContextOptions } from '@trpc/server/adapters/next';
 

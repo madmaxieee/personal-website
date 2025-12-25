@@ -1,22 +1,25 @@
-import AboutMeContent from "@/components/AboutMeContent";
-import BouncingChevron from "@/components/BouncingChevron";
-import ParticleText from "@/components/ParticleTexts";
-import GuessTheLyricsContent from "@/components/ProjectContents/GuessTheLyricsContent";
-import LightDanceContent from "@/components/ProjectContents/LightDanceContent";
-import RepeatedTitle from "@/components/RepeatedTitle";
-import ScrollProgress from "@/components/ScrollProgress";
-import SkillsContent from "@/components/SkillsContent";
-import { clientEnv } from "@/env/schema.mjs";
-import useIsMobile from "@/hooks/useIsMobile";
+import type { MutableRefObject } from 'react';
+import { useState, useRef, useEffect } from 'react';
+
+import { type NextPage } from 'next';
+import Head from 'next/head';
+
 import {
   Parallax,
   ParallaxLayer,
   type IParallax,
-} from "@react-spring/parallax";
-import { type NextPage } from "next";
-import Head from "next/head";
-import type { MutableRefObject } from "react";
-import { useState, useRef, useEffect } from "react";
+} from '@react-spring/parallax';
+
+import AboutMeContent from '@/components/AboutMeContent';
+import BouncingChevron from '@/components/BouncingChevron';
+import ParticleText from '@/components/ParticleTexts';
+import GuessTheLyricsContent from '@/components/ProjectContents/GuessTheLyricsContent';
+import LightDanceContent from '@/components/ProjectContents/LightDanceContent';
+import RepeatedTitle from '@/components/RepeatedTitle';
+import ScrollProgress from '@/components/ScrollProgress';
+import SkillsContent from '@/components/SkillsContent';
+import { clientEnv } from '@/env/schema.mjs';
+import useIsMobile from '@/hooks/useIsMobile';
 
 const LIGHT_DANCE_OFFSET = 4.5;
 const GUESS_THE_LYRICS_OFFSET = LIGHT_DANCE_OFFSET + 3;
@@ -45,7 +48,7 @@ const Home: NextPage = () => {
     if (parallax) {
       (
         parallax.container as MutableRefObject<HTMLDivElement>
-      ).current.addEventListener("scroll", handleScroll);
+      ).current.addEventListener('scroll', handleScroll);
     }
 
     return () => {
@@ -53,7 +56,7 @@ const Home: NextPage = () => {
       if (parallax) {
         (
           parallax.container as MutableRefObject<HTMLDivElement>
-        ).current.removeEventListener("scroll", handleScroll);
+        ).current.removeEventListener('scroll', handleScroll);
       }
     };
   }, []);
@@ -61,36 +64,33 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>madmaxieee | 莊加旭</title>
+        <title>kahiok | 莊加旭</title>
         <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
         <meta
           name="description"
           content={
-            "The personal website of madmaxieee, Max Chuang, 莊加旭 a web and software developer. " +
-            "He is also familiar with ML, AI, and data science. " +
-            "He is currently a student at the National Taiwan University studying electrical engineering. " +
-            "He is also working freelance as a web developer in the past year. "
+            'The personal website of 莊加旭 (Tsng, Kahiok) a software and firmware engineer. '
           }
         />
         <meta
           name="keywords"
-          content="莊加旭,madmaxieee,Max Chuang,NTUEE,NTU,Software Engineer,Web Developer,ML Engineer,freelance,Light Dance"
+          content="莊加旭,kahiok,madmaxieee,Max Chuang,NTUEE,NTU,Software Engineer,Firmware Engineer,Light Dance"
         />
 
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="madmaxieee | 莊加旭" />
+        <meta property="og:title" content="kahiok | 莊加旭" />
         <meta
           property="og:description"
-          content="The personal website of madmaxieee, Max Chuang, 莊加旭, a web and software developer."
+          content="The personal website of 莊加旭 (Tsng, Kahiok) a software and firmware engineer. "
         />
         <meta
           property="og:image"
-          content={clientEnv.NEXT_PUBLIC_DOMAIN + "/madmax-og.png"}
+          content={clientEnv.NEXT_PUBLIC_DOMAIN + '/madmax-og.png'}
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="madmaxieee | 莊加旭" />
-        <meta property="og:site_name" content="madmaxieee | 莊加旭" />
+        <meta property="og:image:alt" content="kahiok | 莊加旭" />
+        <meta property="og:site_name" content="kahiok | 莊加旭" />
         <meta property="og:url" content={clientEnv.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:locale" content="en_US" />
 
@@ -109,7 +109,7 @@ const Home: NextPage = () => {
       >
         {/* background */}
         <ParallaxLayer sticky={{ start: 0, end: 6 }}>
-          <ParticleText isMobile={isMobile} text="madmax" />
+          <ParticleText isMobile={isMobile} text="kahiok" />
           <button
             className="absolute top-3/4 grid w-full cursor-pointer place-items-center p-12 max-md:p-8"
             onClick={() => {
@@ -134,7 +134,7 @@ const Home: NextPage = () => {
         >
           <RepeatedTitle
             title="about"
-            colorClasses={["text-white", "text-white", "text-white"]}
+            colorClasses={['text-white', 'text-white', 'text-white']}
             className="ml-12 max-md:ml-4"
           />
         </ParallaxLayer>
@@ -166,7 +166,7 @@ const Home: NextPage = () => {
           >
             <RepeatedTitle
               title="project"
-              colorClasses={["text-white", "text-white", "text-white"]}
+              colorClasses={['text-white', 'text-white', 'text-white']}
               className="ml-12 max-md:ml-4"
             />
           </ParallaxLayer>
@@ -201,7 +201,7 @@ const Home: NextPage = () => {
           >
             <RepeatedTitle
               title="project"
-              colorClasses={["text-white", "text-white", "text-white"]}
+              colorClasses={['text-white', 'text-white', 'text-white']}
               className="ml-12 max-md:ml-4"
             />
           </ParallaxLayer>
