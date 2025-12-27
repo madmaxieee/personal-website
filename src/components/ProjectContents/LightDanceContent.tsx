@@ -71,13 +71,6 @@ export const LightDanceContent = ({ isMobile }: LightDanceContentProps) => {
           overcome. I lead our software team of 12 students to conquer many
           technical challenges. The frontend, backend, firmware, hardware, and
           design teams should all work in synergy to make this happen.
-          <span className="max-md:hidden">
-            <br />
-            <br />
-          </span>
-          Please visit our{' '}
-          <Anchor href="https://lightdance.ntuee.org/">website</Anchor> for more
-          information.
         </Text>
       </article>
     </Container>
