@@ -1,7 +1,6 @@
 import { type AppProps } from 'next/app';
 
 import '../styles/globals.css';
-import { api } from '../utils/api';
 
 import { MantineProvider } from '@mantine/core';
 import { Inter } from '@next/font/google';
@@ -33,4 +32,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default api.withTRPC(MyApp);
+export default MyApp;
