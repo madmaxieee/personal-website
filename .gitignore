@@ -26,6 +26,9 @@ pnpm-debug.log*
 # editor
 .vscode/
 
+# licensed fonts: MonoLisa's EULA forbids redistribution; see README.md
+public/fonts/monolisa/
+
 # claude code
 .claude/settings.local.json
 # impeccable engine binary (re-downloaded and checksum-verified on demand)
