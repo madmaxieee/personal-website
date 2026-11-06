@@ -25,3 +25,8 @@ pnpm-debug.log*
 
 # editor
 .vscode/
+
+# claude code
+.claude/settings.local.json
+# impeccable engine binary (re-downloaded and checksum-verified on demand)
+.claude/skills/impeccable/scripts/bin/
