@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-11-08T07:52:34.516Z",
+        "reason": "Claude: unchosen decision-round sketch, never shipped; its fonts were never part of the built system"
+      }
+    ]
+  }
+}

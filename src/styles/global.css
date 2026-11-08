@@ -1,0 +1,121 @@
+/*
+ * kahiok.com: a type specimen sheet.
+ *
+ * The type scale is the 號 size system as Taiwan's foundries used it (after
+ * the Japanese 号数; 一號 27.5pt, not the mainland's later 26pt), scaled so that
+ * 五號 (10.5pt) is the 18px body size. --x enlarges only the name ladder, and
+ * the ladder's margin label states the enlargement, so the labels stay true.
+ */
+
+@import "./monolisa.css";
+@import "./fonts.css";
+
+:root {
+  color-scheme: light;
+
+  --paper: #ffffff;
+  --ink: #141414;
+  --lead: #5b5f65;
+  --hair: #e3e3e0;
+  --blue: #1f4fd1;
+  --blue-soft: #1f4fd159;
+
+  --serif: "Gentium Book Plus", "Gentium Plus", "Charis SIL", Georgia, "Noto Serif TC Subset", "Noto Serif TC",
+    "Songti TC", serif;
+  --han: "Noto Serif TC Subset", "Noto Serif TC", "Source Han Serif TC", "Songti TC", serif;
+  --mono: MonoLisaCode, "Noto Serif TC Subset", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --body: 1.125rem;
+  --pt: calc(var(--body) / 10.5);
+  --s-0: calc(var(--pt) * 42); /* 初號 */
+  --s-1: calc(var(--pt) * 27.5); /* 一號 */
+  --s-3: calc(var(--pt) * 15.75); /* 三號 */
+  --s-4: calc(var(--pt) * 13.75); /* 四號 */
+  --s-6: calc(var(--pt) * 7.875); /* 六號 */
+  --x: 1;
+
+  --line: 1.5px;
+  --margin: 3.75rem;
+  --gutter: 1rem;
+  --edge: clamp(1rem, 4vw, 4.5rem);
+}
+
+@media (min-width: 45em) {
+  :root {
+    --x: 1.25;
+    --margin: 7rem;
+    --gutter: 2rem;
+  }
+}
+
+@media (min-width: 70em) {
+  :root {
+    --x: 1.5;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+  scrollbar-color: var(--lead) var(--paper);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: var(--body);
+  line-height: 1.6667;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: var(--blue);
+  text-decoration-line: underline;
+  text-decoration-color: var(--blue-soft);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+::selection {
+  background: var(--blue);
+  color: var(--paper);
+}
+
+:lang(nan-Hant) {
+  font-family: var(--han);
+}

@@ -1,15 +1,678 @@
 ---
+import "../styles/global.css";
+import { work, experience } from "../data/work";
+
+const set = new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" });
+const description =
+  "kahiok (莊加旭, Tsng Kahiok): firmware and system software engineer, maker of Neovim and command-line tools, and maintainer of TaigiKeyboard.";
+
+const sections = [
+  { id: "work", n: 1, title: "Work", han: "作品", count: work.length },
+  { id: "writing", n: 2, title: "Writing", han: "文章", count: 0 },
+  { id: "experience", n: 3, title: "Experience", han: "經歷", count: experience.length },
+  { id: "contact", n: 4, title: "Contact", han: "聯絡" },
+];
+const [sWork, sWriting, sExperience, sContact] = sections;
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>kahiok | 莊加旭</title>
-	</head>
-	<body>
-		<h1>kahiok</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>kahiok | 莊加旭</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL("/", Astro.site)} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" href="/fonts/gentium/GentiumBookPlus-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/gentium/GentiumBookPlus-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <meta property="og:title" content="kahiok | 莊加旭" />
+    <meta property="og:description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <div class="sheet">
+      <header class="head">
+        <span class="label head-mark" lang="nan-Hant">字樣</span>
+        <p class="head-title"><a href="/" aria-current="page">kahiok.com</a>, specimen set {set}</p>
+        <nav aria-label="Sections">
+          <ol class="toc">
+            {
+              sections.map((s) => (
+                <li>
+                  <a href={`#${s.id}`}>
+                    <span class="toc-n">§{s.n}</span> {s.title}
+                    {s.count !== undefined && <span class="toc-count">{s.count}</span>}
+                  </a>
+                </li>
+              ))
+            }
+          </ol>
+        </nav>
+      </header>
+
+      <main>
+        <section class="ident" aria-label="About">
+          <span class="label" aria-hidden="true"
+            >初號<span class="pt">42pt</span><span class="pt mag"
+              ><span class="x-125">放大 ×1.25</span><span class="x-15">放大 ×1.5</span></span
+            ></span
+          >
+          <h1 class="l-0">kahiok</h1>
+
+          <span class="label" aria-hidden="true">一號<span class="pt">27.5pt</span></span>
+          <p class="l-1" lang="nan-Hant">莊加旭</p>
+
+          <span class="label" aria-hidden="true">三號<span class="pt">15.75pt</span></span>
+          <p class="l-3" lang="nan-Latn">Tsng Kahiok</p>
+
+          <span class="label" aria-hidden="true">五號<span class="pt">10.5pt</span></span>
+          <div class="bio">
+            <p>
+              Firmware and system software engineer at Google, working on the modem for Pixel, from the Linux kernel
+              to Android userspace. Outside that I build Neovim and command-line tools, co-wrote the qsyn quantum
+              circuit synthesis framework, and help maintain TaigiKeyboard, a Taiwanese input method.
+            </p>
+            <ul class="links">
+              <li><a href="mailto:tsng@kahiok.com">tsng@kahiok.com</a></li>
+              <li><a href="https://github.com/madmaxieee">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/kahiok">LinkedIn</a></li>
+              <li><a href="/files/Tsng_Kahiok_Resume.pdf">Résumé (PDF)</a></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="sec sec-work" id={sWork.id} aria-labelledby="h-work">
+          <h2 id="h-work" class="sec-head">
+            <span class="num">§{sWork.n}<span class="size" aria-hidden="true">三號</span></span>
+            <span>{sWork.title} <span class="sec-han" lang="nan-Hant">{sWork.han}</span></span>
+          </h2>
+          <ol class="entries">
+            {
+              work.map((w, i) => (
+                <li class="entry">
+                  <span class="num" aria-hidden="true">
+                    {sWork.n}.{i + 1}
+                    <span class="size">四號 13.75pt</span>
+                  </span>
+                  <div class="entry-body">
+                    <h3 class="entry-name">
+                      <a href={w.href}>{w.name}</a>
+                    </h3>
+                    <p class="entry-meta">
+                      {w.stack} · {w.role} · {w.years}
+                    </p>
+                    <p class="entry-sum" lang={w.lang}>
+                      {w.summary}
+                    </p>
+                    {w.extra && (
+                      <p class="entry-also">
+                        {w.name === "Upstream" ? "To " : "Also "}
+                        {w.extra.map((x, j) => (
+                          <>
+                            <a href={x.href}>{x.label}</a>
+                            {j < w.extra!.length - 2 ? ", " : j === w.extra!.length - 2 ? " and " : "."}
+                          </>
+                        ))}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+          <p class="sec-act"><a href="https://github.com/madmaxieee?tab=repositories">Every repository on GitHub</a></p>
+        </section>
+
+        <section class="sec sec-writing" id={sWriting.id} aria-labelledby="h-writing">
+          <h2 id="h-writing" class="sec-head">
+            <span class="num">§{sWriting.n}<span class="size" aria-hidden="true">三號</span></span>
+            <span>{sWriting.title} <span class="sec-han" lang="nan-Hant">{sWriting.han}</span></span>
+          </h2>
+          <p class="empty">
+            Nothing published yet. Posts will be in English, some in <span class="keep" lang="nan-Hant">台語 (<span lang="nan-Latn">Tâi-gí</span>)</span>.
+          </p>
+        </section>
+
+        <section class="sec sec-exp" id={sExperience.id} aria-labelledby="h-exp">
+          <h2 id="h-exp" class="sec-head">
+            <span class="num">§{sExperience.n}<span class="size" aria-hidden="true">三號</span></span>
+            <span>{sExperience.title} <span class="sec-han" lang="nan-Hant">{sExperience.han}</span></span>
+          </h2>
+          <ol class="entries">
+            {
+              experience.map((e, i) => (
+                <li class="entry">
+                  <span class="num" aria-hidden="true">
+                    {sExperience.n}.{i + 1}
+                    <span class="size">四號 13.75pt</span>
+                  </span>
+                  <div class="entry-body">
+                    <h3 class="entry-name">{e.org}</h3>
+                    <p class="entry-meta">{e.dates}</p>
+                    <p class="entry-role">{e.title}</p>
+                    <p class="entry-sum">{e.note}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+          <p class="sec-act"><a href="/files/Tsng_Kahiok_Resume.pdf">The full résumé (PDF)</a></p>
+        </section>
+
+        <section class="sec sec-contact" id={sContact.id} aria-labelledby="h-contact">
+          <h2 id="h-contact" class="sec-head">
+            <span class="num">§{sContact.n}<span class="size" aria-hidden="true">三號</span></span>
+            <span>{sContact.title} <span class="sec-han" lang="nan-Hant">{sContact.han}</span></span>
+          </h2>
+          <dl class="contact">
+            <dt>Email</dt>
+            <dd><a href="mailto:tsng@kahiok.com">tsng@kahiok.com</a></dd>
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/madmaxieee">madmaxieee</a></dd>
+            <dt>LinkedIn</dt>
+            <dd><a href="https://www.linkedin.com/in/kahiok">kahiok</a></dd>
+          </dl>
+          <p class="sec-act"><a href="mailto:tsng@kahiok.com">Write to me</a></p>
+        </section>
+      </main>
+
+      <footer class="colophon">
+        <span class="label" lang="nan-Hant">排印</span>
+        <p>
+          Set in Gentium Book Plus, Noto Serif TC and MonoLisa. Sizes follow the 號 system with 五號 at 18px; the name
+          above is enlarged as its margin says. Built with Astro.
+        </p>
+        <span class="label" aria-hidden="true">三號<span class="pt">15.75pt</span></span>
+        <p class="showing" lang="nan-Latn">
+          <span class="keep">Tâi-lô â á à ā a̍ a̋</span> · <span class="keep">Pe̍h-ōe-jī o͘ e̍ ǹg ḿ</span>
+        </p>
+      </footer>
+    </div>
+  </body>
 </html>
+
+<style>
+  .sheet {
+    position: relative;
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 0 var(--edge);
+    display: grid;
+    grid-template-columns: var(--margin) minmax(0, 1fr);
+  }
+
+  /* The one governing line: the margin edge, top to bottom. */
+  .sheet::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--edge) + var(--margin));
+    width: var(--line);
+    background: var(--ink);
+  }
+
+  main {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+  }
+
+  .label {
+    font-family: var(--mono);
+    font-size: var(--s-6);
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    color: var(--blue);
+    text-align: right;
+    padding-right: 0.875rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .label .pt {
+    display: block;
+    color: var(--lead);
+  }
+
+  /* Head */
+
+  .head {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    row-gap: 0.5rem;
+    padding: 1.75rem 0 0;
+  }
+
+  .head-mark {
+    grid-row: 1;
+  }
+
+  .head-title,
+  .head nav {
+    grid-column: 2;
+    padding-left: var(--gutter);
+    font-size: 1rem;
+  }
+
+  .head-title {
+    color: var(--lead);
+  }
+
+  .head-title a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+  }
+
+  .toc a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    color: var(--blue);
+  }
+
+  .toc-n,
+  .toc-count {
+    font-family: var(--mono);
+    font-size: var(--s-6);
+    color: var(--blue);
+  }
+
+  .toc-count {
+    color: var(--lead);
+    margin-left: 0.25rem;
+  }
+
+  /* Name ladder */
+
+  .ident {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    align-content: start;
+    padding-top: 3.5rem;
+  }
+
+  .ident > :not(.label) {
+    grid-column: 2;
+    padding-left: var(--gutter);
+  }
+
+  .ident > .label {
+    grid-column: 1;
+  }
+
+  .mag span {
+    display: none;
+  }
+
+  @media (min-width: 45em) and (max-width: 69.99em) {
+    .mag .x-125 {
+      display: inline;
+    }
+  }
+
+  @media (min-width: 70em) {
+    .mag .x-15 {
+      display: inline;
+    }
+  }
+
+  .l-0 {
+    font-size: calc(var(--s-0) * var(--x));
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .l-1 {
+    font-size: calc(var(--s-1) * var(--x));
+    line-height: 1.5;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+  }
+
+  .l-3 {
+    font-size: calc(var(--s-3) * var(--x));
+    line-height: 1.3;
+  }
+
+  .bio {
+    max-width: 34rem;
+    margin-top: 1.75rem;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    margin-top: 1rem;
+  }
+
+  /* Sections */
+
+  .sec {
+    grid-column: 2;
+    padding: 4.5rem 0 0 var(--gutter);
+  }
+
+  .sec-head {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    align-items: baseline;
+    font-size: var(--s-3);
+    line-height: 1.3;
+    font-weight: 700;
+    padding-bottom: 1rem;
+  }
+
+  .sec-han {
+    font-size: var(--body);
+    font-weight: 400;
+    color: var(--lead);
+    margin-left: 0.375rem;
+  }
+
+  .num {
+    font-family: var(--mono);
+    font-size: var(--s-6);
+    font-weight: 400;
+    color: var(--blue);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    align-items: baseline;
+    border-top: 1px solid var(--hair);
+    padding: 1rem 0 1.125rem;
+  }
+
+  .entry .num {
+    color: var(--lead);
+  }
+
+  .sec-head .size {
+    display: block;
+    color: var(--lead);
+  }
+
+  .entry .size {
+    display: none;
+    color: var(--blue);
+    white-space: nowrap;
+  }
+
+  /* Pointing at an entry proofs it: its number turns blue and its size is
+     marked under it. States snap; nothing tweens. */
+  .entry:hover .num,
+  .entry:focus-within .num {
+    color: var(--blue);
+  }
+
+  .entry:hover .size,
+  .entry:focus-within .size {
+    display: block;
+  }
+
+  .entry-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1rem;
+    align-items: baseline;
+  }
+
+  .entry-name {
+    font-size: var(--s-4);
+    line-height: 1.3;
+    font-weight: 700;
+  }
+
+  .entry-name a {
+    color: var(--ink);
+    text-decoration-color: var(--hair);
+  }
+
+  .entry-name a:hover {
+    color: var(--blue);
+    text-decoration-color: currentColor;
+  }
+
+  .entry-meta {
+    font-family: var(--mono);
+    font-size: var(--s-6);
+    color: var(--lead);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .entry-role,
+  .entry-sum,
+  .entry-also {
+    grid-column: 1 / -1;
+    max-width: 36rem;
+  }
+
+  .entry-role {
+    color: var(--lead);
+  }
+
+  .entry-sum {
+    margin-top: 0.25rem;
+  }
+
+  .entry-also {
+    color: var(--lead);
+  }
+
+  .sec-act {
+    border-top: 1px solid var(--hair);
+    padding: 1rem 0 0 4.5rem;
+  }
+
+  .empty {
+    border-top: 1px solid var(--hair);
+    padding: 1rem 0 0 4.5rem;
+    color: var(--lead);
+    max-width: 39rem;
+  }
+
+  .contact {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 4.5rem 6rem minmax(0, 1fr);
+    border-top: 1px solid var(--hair);
+    padding: 1rem 0 1.125rem;
+  }
+
+  .contact dt {
+    grid-column: 2;
+    color: var(--lead);
+  }
+
+  .contact dd {
+    margin: 0;
+  }
+
+  /* Colophon */
+
+  .colophon {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    padding: 6rem 0 3rem;
+    font-size: 0.9375rem;
+    color: var(--lead);
+  }
+
+  .colophon p {
+    grid-column: 2;
+    padding-left: var(--gutter);
+    max-width: 40rem;
+  }
+
+  .colophon > .label {
+    grid-column: 1;
+  }
+
+  .colophon > .label:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+
+  .keep {
+    white-space: nowrap;
+  }
+
+  .colophon .showing {
+    max-width: none;
+    margin-top: 1.5rem;
+    font-size: var(--s-3);
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* Narrow: the margin keeps its size names and drops the point sizes. */
+  @media (max-width: 44.99em) {
+    .label .pt {
+      display: none;
+    }
+
+    .head {
+      padding-top: 1.25rem;
+    }
+
+    .ident {
+      padding-top: 1.75rem;
+    }
+
+    .bio {
+      margin-top: 1rem;
+    }
+
+    .sec {
+      padding-top: 3rem;
+    }
+
+    .sec-work {
+      padding-top: 1.5rem;
+    }
+
+    .sec-head {
+      padding-bottom: 0.625rem;
+    }
+
+    .entry {
+      padding-top: 0.75rem;
+    }
+
+    .label {
+      padding-right: 0.5rem;
+    }
+
+    .entry-body {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .entry-meta {
+      text-align: left;
+    }
+
+    .sec-head,
+    .entry {
+      grid-template-columns: 2.5rem minmax(0, 1fr);
+    }
+
+    .sec-act,
+    .empty {
+      padding-left: 2.5rem;
+    }
+
+    .entry .size {
+      white-space: normal;
+    }
+
+    .contact {
+      grid-template-columns: 2.5rem 5.5rem minmax(0, 1fr);
+    }
+  }
+
+  /* Wide: name and work share the first viewport; the rest pairs below. */
+  @media (min-width: 70em) {
+    .sheet,
+    main,
+    .head,
+    .colophon {
+      grid-template-columns: var(--margin) minmax(0, 1.05fr) minmax(0, 1fr);
+    }
+
+    .sheet {
+      column-gap: 0;
+    }
+
+    /* Two columns that flow independently: Work spans past Writing so
+       Experience starts under Writing, and Contact starts under Work. */
+    main {
+      grid-template-rows: auto auto auto auto;
+      align-items: start;
+    }
+
+    .head-title {
+      grid-column: 2;
+    }
+
+    .head nav {
+      grid-column: 3;
+      padding-left: 0;
+    }
+
+    .ident {
+      grid-column: 1 / 3;
+      grid-row: 1;
+    }
+
+    .sec-work {
+      grid-column: 3;
+      grid-row: 1 / span 3;
+      padding-top: 3.5rem;
+      padding-left: 0;
+    }
+
+    .sec-writing {
+      grid-column: 2;
+      grid-row: 2;
+      padding-right: 4rem;
+    }
+
+    .sec-exp {
+      grid-column: 2;
+      grid-row: 3 / span 2;
+      padding-right: 4rem;
+    }
+
+    .sec-contact {
+      grid-column: 3;
+      grid-row: 4;
+      padding-left: 0;
+    }
+
+    .colophon p {
+      grid-column: 2 / -1;
+    }
+  }
+</style>

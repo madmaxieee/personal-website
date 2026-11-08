@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-08T00:00:00Z",
+  "title": "Design System: kahiok.com",
+  "extensions": {
+    "colorMeta": {
+      "proofing-blue": {
+        "role": "primary",
+        "displayName": "Proofing Blue",
+        "canonical": "#1f4fd1",
+        "tonalRamp": [
+          "#0a1840",
+          "#112766",
+          "#17378f",
+          "#1f4fd1",
+          "#4a71dd",
+          "#7d98e8",
+          "#b3c3f2",
+          "#e6ecfb"
+        ]
+      },
+      "proofing-blue-soft": {
+        "role": "primary",
+        "displayName": "Proofing Blue, Soft",
+        "canonical": "#1f4fd159"
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#5e5e5e",
+          "#808080",
+          "#a3a3a3",
+          "#c7c7c7",
+          "#e8e8e8",
+          "#ffffff"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#141414",
+        "tonalRamp": [
+          "#141414",
+          "#2b2b2b",
+          "#454545",
+          "#636363",
+          "#858585",
+          "#a8a8a8",
+          "#cccccc",
+          "#efefef"
+        ]
+      },
+      "lead": {
+        "role": "neutral",
+        "displayName": "Lead",
+        "canonical": "#5b5f65",
+        "tonalRamp": [
+          "#1d1f22",
+          "#303337",
+          "#45484d",
+          "#5b5f65",
+          "#7b7f85",
+          "#9da0a5",
+          "#c2c4c7",
+          "#e8e9ea"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e3e3e0",
+        "tonalRamp": [
+          "#262624",
+          "#41413e",
+          "#60605c",
+          "#81817c",
+          "#a3a39e",
+          "#c4c4c0",
+          "#e3e3e0",
+          "#f6f6f4"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "初號 42pt × --x",
+        "purpose": "The handle 'kahiok' in the name ladder only; 72/90/108px at --x 1/1.25/1.5."
+      },
+      "headline": {
+        "displayName": "一號 27.5pt × --x",
+        "purpose": "莊加旭 in the name ladder only (Noto Serif TC 900)."
+      },
+      "title-roman": {
+        "displayName": "三號 15.75pt × --x",
+        "purpose": "The romanized name Tsng Kahiok in the name ladder."
+      },
+      "title": {
+        "displayName": "三號 15.75pt",
+        "purpose": "Section openers; never enlarged."
+      },
+      "entry-title": {
+        "displayName": "四號 13.75pt",
+        "purpose": "Work and experience entry names."
+      },
+      "body": {
+        "displayName": "五號 10.5pt (18px)",
+        "purpose": "Reading text; --pt = body / 10.5."
+      },
+      "label": {
+        "displayName": "六號 7.875pt",
+        "purpose": "Margin size labels, § and entry numbers, metadata, nav counts."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "snap",
+        "value": "none",
+        "purpose": "No transitions or animation anywhere; hover and focus states change instantly."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow",
+        "value": "max-width: 44.99em",
+        "purpose": "--x 1; margin 3.75rem; labels drop point sizes; number column 2.5rem."
+      },
+      {
+        "name": "medium",
+        "value": "45em",
+        "purpose": "--x 1.25; margin 7rem; gutter 2rem."
+      },
+      {
+        "name": "wide",
+        "value": "70em",
+        "purpose": "--x 1.5; margin + two columns (1.05fr / 1fr); name and Work share the first viewport."
+      }
+    ],
+    "rules": {
+      "marginRule": "1.5px solid #141414 on the margin edge, full sheet height",
+      "hairline": "1px solid #e3e3e0",
+      "focusRing": "2px solid #1f4fd1, offset 3px, radius 1px",
+      "selection": "background #1f4fd1, text #ffffff"
+    }
+  },
+  "components": [
+    {
+      "name": "Margin Label",
+      "kind": "custom",
+      "refersTo": "margin-label",
+      "description": "Right-aligned mono 號 name in blue with its true point size beneath in lead, set against the margin rule.",
+      "html": "<div class=\"ds-margin\"><span class=\"ds-label\">一號<span class=\"ds-pt\">27.5pt</span></span><p class=\"ds-han\" lang=\"nan-Hant\">莊加旭</p></div>",
+      "css": ".ds-margin{display:grid;grid-template-columns:7rem 1fr;align-items:baseline;background:#fff;color:#141414;position:relative}.ds-margin::before{content:'';position:absolute;top:0;bottom:0;left:7rem;width:1.5px;background:#141414}.ds-label{font-family:MonoLisaCode,'Noto Serif TC',ui-monospace,Menlo,monospace;font-size:12.86px;line-height:1.4;letter-spacing:.02em;color:#1f4fd1;text-align:right;padding-right:.875rem;font-variant-numeric:tabular-nums}.ds-pt{display:block;color:#5b5f65}.ds-han{margin:0;padding-left:2rem;font-family:'Noto Serif TC','Songti TC',serif;font-weight:900;font-size:44.57px;line-height:1.5;letter-spacing:.04em}"
+    },
+    {
+      "name": "Section Opener",
+      "kind": "custom",
+      "refersTo": "section-number",
+      "description": "Blue § number with its 三號 size name beneath, then the bold 三號 title and a lead Hanji gloss.",
+      "html": "<h2 class=\"ds-sec-head\"><span class=\"ds-num\">§1<span class=\"ds-size\">三號</span></span><span>Work <span class=\"ds-gloss\" lang=\"nan-Hant\">作品</span></span></h2>",
+      "css": ".ds-sec-head{margin:0;display:grid;grid-template-columns:4.5rem 1fr;align-items:baseline;font-family:'Gentium Book Plus',Georgia,serif;font-size:27.43px;line-height:1.3;font-weight:700;color:#141414;padding-bottom:1rem}.ds-num{font-family:MonoLisaCode,ui-monospace,Menlo,monospace;font-size:12.86px;font-weight:400;color:#1f4fd1;font-variant-numeric:tabular-nums}.ds-size{display:block;color:#5b5f65}.ds-gloss{font-family:'Noto Serif TC','Songti TC',serif;font-size:18px;font-weight:400;color:#5b5f65;margin-left:.375rem}"
+    },
+    {
+      "name": "Entry",
+      "kind": "custom",
+      "refersTo": "entry",
+      "description": "Hairline-topped numbered entry; hover or focus snaps the number blue and reveals its 四號 size.",
+      "html": "<div class=\"ds-entry\" tabindex=\"0\"><span class=\"ds-enum\">1.1<span class=\"ds-esize\">四號 13.75pt</span></span><div class=\"ds-ebody\"><h3 class=\"ds-ename\"><a href=\"#\">loglit</a></h3><p class=\"ds-emeta\">Go · author · 2024–</p><p class=\"ds-esum\">A command-line log highlighter.</p></div></div>",
+      "css": ".ds-entry{display:grid;grid-template-columns:4.5rem 1fr;align-items:baseline;border-top:1px solid #e3e3e0;padding:1rem 0 1.125rem;font-family:'Gentium Book Plus',Georgia,serif;font-size:18px;line-height:1.6667;color:#141414;background:#fff}.ds-entry:focus-visible{outline:2px solid #1f4fd1;outline-offset:3px;border-radius:1px}.ds-enum{font-family:MonoLisaCode,ui-monospace,Menlo,monospace;font-size:12.86px;color:#5b5f65;font-variant-numeric:tabular-nums}.ds-esize{display:none;color:#1f4fd1;white-space:nowrap}.ds-entry:hover .ds-enum,.ds-entry:focus-within .ds-enum{color:#1f4fd1}.ds-entry:hover .ds-esize,.ds-entry:focus-within .ds-esize{display:block}.ds-ebody{display:grid;grid-template-columns:1fr auto;column-gap:1rem;align-items:baseline}.ds-ename{margin:0;font-size:24px;line-height:1.3;font-weight:700}.ds-ename a{color:#141414;text-decoration-color:#e3e3e0;text-underline-offset:.2em}.ds-ename a:hover{color:#1f4fd1;text-decoration-color:currentColor}.ds-emeta{margin:0;font-family:MonoLisaCode,ui-monospace,Menlo,monospace;font-size:12.86px;color:#5b5f65;text-align:right}.ds-esum{margin:.25rem 0 0;grid-column:1/-1;max-width:36rem}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Proofing-blue link with a soft underline that turns solid and 2px on hover.",
+      "html": "<a class=\"ds-link\" href=\"#\">Every repository on GitHub</a>",
+      "css": ".ds-link{font-family:'Gentium Book Plus',Georgia,serif;font-size:18px;color:#1f4fd1;text-decoration-line:underline;text-decoration-color:#1f4fd159;text-decoration-thickness:1px;text-underline-offset:.2em}.ds-link:hover{text-decoration-color:currentColor;text-decoration-thickness:2px}.ds-link:focus-visible{outline:2px solid #1f4fd1;outline-offset:3px;border-radius:1px}"
+    },
+    {
+      "name": "Section Nav",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Head nav: blue § numbers, ink names, lead counts; hover snaps blue.",
+      "html": "<nav><ol class=\"ds-toc\"><li><a href=\"#\"><span class=\"ds-tn\">§1</span> Work <span class=\"ds-tc\">7</span></a></li><li><a href=\"#\"><span class=\"ds-tn\">§2</span> Writing <span class=\"ds-tc\">0</span></a></li><li><a href=\"#\"><span class=\"ds-tn\">§4</span> Contact</a></li></ol></nav>",
+      "css": ".ds-toc{display:flex;flex-wrap:wrap;gap:.25rem 1.5rem;margin:0;padding:0;list-style:none;font-family:'Gentium Book Plus',Georgia,serif;font-size:16px}.ds-toc a{color:#141414;text-decoration:none}.ds-toc a:hover{color:#1f4fd1}.ds-toc a:focus-visible{outline:2px solid #1f4fd1;outline-offset:3px;border-radius:1px}.ds-tn,.ds-tc{font-family:MonoLisaCode,ui-monospace,Menlo,monospace;font-size:12.86px;color:#1f4fd1}.ds-tc{color:#5b5f65;margin-left:.25rem}"
+    },
+    {
+      "name": "Section Action",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "The single closing action of a populated section, hung from the text indent under a hairline.",
+      "html": "<p class=\"ds-act\"><a href=\"#\">The full résumé (PDF)</a></p>",
+      "css": ".ds-act{margin:0;border-top:1px solid #e3e3e0;padding:1rem 0 0 4.5rem;font-family:'Gentium Book Plus',Georgia,serif;font-size:18px;line-height:1.6667}.ds-act a{color:#1f4fd1;text-decoration-color:#1f4fd159;text-underline-offset:.2em}.ds-act a:hover{text-decoration-color:currentColor;text-decoration-thickness:2px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Specimen Sheet",
+    "overview": "The site is a type foundry's specimen sheet. A white sheet, near-black ink, one vertical margin rule, and in that margin the size of each opener, written in the Chinese 號 system the way a proof is marked up. The sizes are true: the scale is computed in points from 五號 (10.5pt) set at the 18px body, so a label that says 27.5pt sits beside type that is 27.5pt at that ratio. The only enlargement is the name ladder's, and its label says so.\n\nThe world is quiet and precise. Density is that of a well-set printed page: generous section breaks, tight entry rhythm, metadata set small in mono. Colour is used as a proofreader uses it: non-repro blue marks what a proof would mark (sizes, § numbers) and what a reader can follow (links). There are no boxes, no shadows, no icons, no dark mode, and nothing animates.\n\nCorrect Taiwanese is part of the material. Gentium Book Plus sets all Latin because it stacks Tâi-lô and Pe̍h-ōe-jī combining marks correctly (e̍, o͘, ǹ, a̋); Noto Serif TC sets Hanji, including the heavy 一號 莊加旭; MonoLisa sets the margin.",
+    "keyCharacteristics": [
+      "Every type size is a 號 step in points; the margin states it.",
+      "One 1.5px ink margin rule from top to bottom of the sheet; 1px hairlines between entries.",
+      "Proofing blue only on labels, § numbers, links and their states.",
+      "Light only (`color-scheme: light`).",
+      "States snap; nothing tweens."
+    ],
+    "rules": [
+      {
+        "name": "The Proofing Blue Rule",
+        "body": "Blue marks only what a proofreader would mark (size labels, § numbers) or what a reader can follow (links, and the focus and hover states of links and entries). It never fills an area, colours a heading, or decorates.",
+        "section": "colors"
+      },
+      {
+        "name": "The White Sheet Rule",
+        "body": "Light only. There is no dark theme and no tinted surface; the sheet is `paper` edge to edge.",
+        "section": "colors"
+      },
+      {
+        "name": "The True Label Rule",
+        "body": "A margin label names the 號 step and the point size of the line beside it. If a size is enlarged, the label states the factor (放大 ×1.25, 放大 ×1.5); if not, there is no factor. A label never names a size the type is not set at.",
+        "section": "typography"
+      },
+      {
+        "name": "The Name-Only Enlargement Rule",
+        "body": "`--x` multiplies the three name-ladder lines and nothing else. Section openers, entries and the colophon specimen stay at their nominal 號 size at every width.",
+        "section": "typography"
+      },
+      {
+        "name": "The Correct Marks Rule",
+        "body": "Any Latin that may carry Tâi-lô or POJ tone marks is set in Gentium Book Plus and tagged `lang=\"nan-Latn\"`; Hanji is tagged `lang=\"nan-Hant\"` so it takes the Hanji stack. Do not set romanized Taiwanese in a face that has not been checked for stacked marks.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Governing Line Rule",
+        "body": "The sheet has exactly one heavy line: a 1.5px ink rule on the margin edge, running the full height of the sheet. Every other divider is a 1px hairline. No boxes, cards or outlines enclose content.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** compute every new size from `--pt` as a 號 step and label it in the margin with its true point size.",
+      "**Do** confine `--x` enlargement to the name ladder and state the factor in its margin label.",
+      "**Do** keep proofing blue to labels, § numbers, links and their focus/hover states.",
+      "**Do** separate entries with 1px hairlines and keep the 1.5px margin rule the only heavy line.",
+      "**Do** tag Hanji `lang=\"nan-Hant\"` and romanized Taiwanese `lang=\"nan-Latn\"`, set in Gentium Book Plus.",
+      "**Do** let states snap: colour and visibility change instantly on hover and focus.",
+      "**Do** end each populated section with exactly one action."
+    ],
+    "donts": [
+      "**Don't** add a dark theme or tinted surfaces; the sheet is white.",
+      "**Don't** add boxes, cards, shadows, rounded corners or icons.",
+      "**Don't** add transitions, tweens or animation.",
+      "**Don't** use blue for headings, fills, or emphasis that is not a link or a proof mark.",
+      "**Don't** enlarge section openers, entries or body with `--x`, or let a margin label state a size the type is not set at.",
+      "**Don't** add a second vertical rule or a heavier divider."
+    ]
+  }
+}

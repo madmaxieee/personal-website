@@ -1,0 +1,43 @@
+/*
+ * Free fonts, self-hosted under public/fonts/ with their OFL licences.
+ *
+ * Gentium Book Plus (SIL) sets all Latin text. It is subset to Latin, IPA,
+ * Combining Diacritical Marks and Latin Extended Additional, keeping every
+ * OpenType feature, so Tâi-lô and Pe̍h-ōe-jī tone marks stack correctly
+ * (e̍, o͘, ǹ). TASA is not needed for this.
+ *
+ * Noto Serif TC is subset to the few Hanji this site's chrome uses. Any other
+ * Hanji (e.g. in a 台語 post) falls through to the next family in the stack.
+ */
+
+@font-face {
+  font-family: "Gentium Book Plus";
+  src: url(/fonts/gentium/GentiumBookPlus-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gentium Book Plus";
+  src: url(/fonts/gentium/GentiumBookPlus-Bold.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Serif TC Subset";
+  src: url(/fonts/noto-serif-tc/NotoSerifTC-400-subset.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Serif TC Subset";
+  src: url(/fonts/noto-serif-tc/NotoSerifTC-900-subset.woff2) format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}

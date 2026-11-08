@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@400;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fbfcfa;--ink:#16201b;--rule:#c9dccf;--green:#2f7d5b;--c:56px}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1440px;height:900px;overflow:hidden;background:var(--paper);color:var(--ink);font-family:"Gentium Book Plus",serif}
+.sheet{position:absolute;inset:40px 56px;display:grid;grid-template-columns:1fr 56px 1fr;border:1.5px solid var(--green)}
+.top{position:absolute;top:12px;left:56px;right:56px;display:flex;justify-content:space-between;font:12px ui-monospace,monospace;color:var(--green)}
+.top nav a{margin-left:24px;color:var(--ink);text-decoration:none}
+.half{position:relative;padding:40px 48px;background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:var(--c) var(--c);background-position:-1px -1px}
+.half.right{background-image:linear-gradient(var(--rule) 1px,transparent 1px);background-size:100% var(--c)}
+.fold{border-left:1.5px solid var(--green);border-right:1.5px solid var(--green);display:flex;flex-direction:column;align-items:center;padding-top:40px;gap:16px;font-family:"Noto Serif TC",serif;color:var(--green);font-size:15px;writing-mode:vertical-rl;}
+.fish{width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:12px solid var(--green);writing-mode:horizontal-tb}
+.cells{display:grid;grid-template-columns:repeat(6,var(--c));grid-auto-rows:var(--c);margin-left:calc(var(--c) - 48px)}
+.cells span{display:grid;place-items:center;font-size:40px;line-height:1;background:var(--paper);outline:1px solid var(--rule)}
+.cells.han span{font-family:"Noto Serif TC",serif;font-weight:700;font-size:38px}
+.cells.gap{margin-top:var(--c)}
+.roman{margin:20px 0 0 8px;font-size:20px;letter-spacing:.02em}
+.bio{position:absolute;left:56px;bottom:96px;width:540px;background:var(--paper);padding:16px 0;font-size:18px;line-height:28px}
+.links{position:absolute;left:56px;bottom:48px;font:13px ui-monospace,monospace;display:flex;gap:24px;background:var(--paper)}
+.links a{color:var(--green)}
+h2{font-family:"Noto Serif TC",serif;font-size:15px;color:var(--green);height:var(--c);display:flex;align-items:center;gap:12px;font-weight:500}
+h2 b{font-family:"Gentium Book Plus",serif;font-size:22px;color:var(--ink)}
+.row{display:grid;grid-template-columns:64px 170px 1fr 90px 20px;height:var(--c);align-items:center;font-size:16px;position:relative}
+.row .d{font:12px ui-monospace,monospace;color:var(--green)}
+.row .n{font-weight:700;font-size:17px}
+.row .s{font:12px ui-monospace,monospace;color:var(--ink)}
+.row .a{color:var(--green)}
+.row.cur::before{content:"";position:absolute;left:-36px;width:12px;height:12px;background:var(--green)}
+.count{position:absolute;bottom:14px;left:56px;right:56px;display:flex;justify-content:space-between;font:11px ui-monospace,monospace;color:var(--green)}
+</style></head><body>
+<div class="top"><span>kahiok.com</span><nav><a>Work</a><a>Writing</a><a>Experience</a><a>Résumé</a><a>GitHub</a></nav></div>
+<div class="sheet">
+  <section class="half">
+    <div class="cells"><span>k</span><span>a</span><span>h</span><span>i</span><span>o</span><span>k</span></div>
+    <div class="cells han gap"><span>莊</span><span>加</span><span>旭</span></div>
+    <p class="roman">Tsng Kahiok</p>
+    <p class="bio">Firmware and system software engineer at Google, working on Pixel's modem. I build Neovim and command-line tools, co-wrote the qsyn quantum circuit compiler, and help maintain TaigiKeyboard, a Taiwanese input method.</p>
+    <p class="links"><a>tsng@kahiok.com</a><a>github/madmaxieee</a><a>linkedin/kahiok</a><a>résumé.pdf</a></p>
+  </section>
+  <div class="fold"><span class="fish"></span>加旭稿紙　第壹頁<span class="fish" style="transform:rotate(180deg)"></span></div>
+  <section class="half right">
+    <h2>作品 <b>Work</b></h2>
+    <div class="row cur"><span class="d">2025</span><span class="n">loglit</span><span>Log highlighter for the terminal</span><span class="s">Go</span><span class="a">↗</span></div>
+    <div class="row"><span class="d">2025</span><span class="n">fff-snacks.nvim</span><span>fff file search in snacks picker</span><span class="s">Lua</span><span class="a">↗</span></div>
+    <div class="row"><span class="d">2025</span><span class="n">unclash.nvim</span><span>Three-way merge conflict manager</span><span class="s">Lua</span><span class="a">↗</span></div>
+    <div class="row"><span class="d">2026</span><span class="n">TaigiKeyboard</span><span>Taiwanese IME, Tâi-lô and POJ</span><span class="s">multi</span><span class="a">↗</span></div>
+    <div class="row"><span class="d">2024</span><span class="n">qsyn</span><span>Quantum circuit synthesis, QCE '24</span><span class="s">C++20</span><span class="a">↗</span></div>
+    <div class="row"><span class="d">2023</span><span class="n">Light Dance</span><span>3D stage editor and simulator</span><span class="s">Three.js</span><span class="a">↗</span></div>
+    <div class="row"><span class="d">—</span><span class="n">Upstream</span><span>fff · snacks.nvim · blink.pairs</span><span class="s">PRs</span><span class="a">↗</span></div>
+    <h2 style="margin-top:var(--c)">文章 <b>Writing</b></h2>
+    <div class="row"><span class="d">—</span><span style="grid-column:2/5">Nothing published yet.</span></div>
+  </section>
+</div>
+<div class="count"><span>20 × 20 = 400</span><span>第 1 頁</span></div>
+</body></html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@400;700&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#141414;--lead:#5f6367;--blue:#2b5fd9}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1440px;height:900px;overflow:hidden;background:#fff;color:var(--ink);font-family:"Gentium Book Plus",serif}
+.lbl{font:12px ui-monospace,monospace;color:var(--blue)}
+header{display:grid;grid-template-columns:160px 1fr auto;align-items:baseline;padding:32px 72px 0 72px}
+header .t{font-size:15px}
+header nav{display:flex;gap:28px;font-size:15px}
+header nav a{color:var(--ink);text-decoration:underline;text-decoration-color:#c8c8c8;text-underline-offset:4px}
+.struct{padding:6px 0 0 232px;font:12px ui-monospace,monospace;color:var(--lead)}
+main{display:grid;grid-template-columns:160px 600px 1fr;padding:56px 72px 0;column-gap:0}
+.m{border-right:1.5px solid var(--ink);padding-right:20px;text-align:right}
+.ladder{padding-left:40px}
+.step{display:flex;align-items:baseline}
+.m.lbl{line-height:1}
+.han{font-family:"Noto Serif TC",serif;font-weight:900;font-size:168px;line-height:180px;letter-spacing:.02em}
+.lat1{font-size:104px;line-height:112px;font-weight:700;letter-spacing:-.01em}
+.lat2{font-size:44px;line-height:56px}
+.bio{font-size:19px;line-height:30px;max-width:30em;margin-top:28px}
+.links{margin-top:24px;display:flex;gap:28px;font-size:16px}
+.links a{color:var(--blue)}
+.work{padding-left:64px;padding-top:8px}
+.work h2{font-family:"Noto Serif TC",serif;font-size:14px;font-weight:400;color:var(--lead);margin-bottom:16px;display:flex;gap:12px;align-items:baseline}
+.work h2 b{font-family:"Gentium Book Plus",serif;color:var(--ink);font-size:22px}
+.e{padding:12px 0 13px;display:grid;grid-template-columns:44px 1fr;border-top:1px solid #e3e3e3}
+.e .lbl{padding-top:9px}
+.e strong{display:block;font-size:26px;line-height:32px}
+.e span{font-size:16px;line-height:24px;color:#2a2a2a}
+.e em{font-style:normal;font:12px ui-monospace,monospace;color:var(--lead);margin-left:8px}
+</style></head><body>
+<header><span class="lbl">字樣 · Specimen</span><span class="t">kahiok.com</span><nav><a>Work</a><a>Writing</a><a>Experience</a><a>Résumé</a><a>GitHub</a></nav></header>
+<p class="struct">§1 Work 7 · §2 Writing 0 · §3 Experience 3</p>
+<main>
+  <div class="m">
+    <div class="lbl" style="height:180px;padding-top:30px">初號</div>
+    <div class="lbl" style="height:112px;padding-top:30px">一號</div>
+    <div class="lbl" style="height:56px;padding-top:14px">二號</div>
+    <div class="lbl" style="padding-top:36px">五號</div>
+  </div>
+  <div class="ladder">
+    <div class="han">莊加旭</div>
+    <div class="lat1">kahiok</div>
+    <div class="lat2">Tsng Kahiok</div>
+    <p class="bio">Firmware and system software engineer at Google, on Pixel's modem. I build Neovim and command-line tools, co-wrote the qsyn quantum circuit compiler, and help maintain TaigiKeyboard, a Taiwanese input method.</p>
+    <p class="links"><a>tsng@kahiok.com</a><a>GitHub</a><a>LinkedIn</a><a>Résumé PDF</a></p>
+  </div>
+  <section class="work">
+    <h2><span class="lbl">§1</span><b>Work</b> 作品</h2>
+    <div class="e"><span class="lbl">1.1</span><div><strong>loglit</strong><span>Highlights logs in the terminal.<em>Go</em></span></div></div>
+    <div class="e"><span class="lbl">1.2</span><div><strong>fff-snacks.nvim</strong><span>fff file search inside the snacks picker.<em>Lua</em></span></div></div>
+    <div class="e"><span class="lbl">1.3</span><div><strong>unclash.nvim</strong><span>Three-way merge conflicts in Neovim.<em>Lua</em></span></div></div>
+    <div class="e"><span class="lbl">1.4</span><div><strong>TaigiKeyboard</strong><span>Taiwanese input: Tâi-lô, POJ, Hanji.<em>maintainer</em></span></div></div>
+    <div class="e"><span class="lbl">1.5</span><div><strong>qsyn</strong><span>Quantum circuit synthesis; IEEE QCE '24.<em>C++20</em></span></div></div>
+    <div class="e"><span class="lbl">1.6</span><div><strong>Light Dance</strong><span>3D stage editor and simulator.<em>Three.js</em></span></div></div>
+  </section>
+</main>
+</body></html>
