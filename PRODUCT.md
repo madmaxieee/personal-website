@@ -60,7 +60,7 @@ Constraints:
 
 - **Name**: the handle comes first. "kahiok" is the primary mark, shown with 莊加旭 / Tsng Kahiok. Previous site title: "kahiok | 莊加旭". "Max" / Max Chuang is retired and does not appear on the site; `madmaxieee` survives only as the GitHub handle.
 - **Handles and links**: email tsng@kahiok.com; GitHub github.com/madmaxieee; LinkedIn linkedin.com/in/kahiok (per the current résumé; the old site linked /in/chuangjiaxu).
-- **Fonts**: kahiok prefers the TASA fonts because they handle Taiwanese romanization diacritics well. Treat this as kahiok's chosen typeface family.
+- **Fonts**: TASA is an optional choice for reliable Taiwanese romanization diacritics, not a fixed typeface or visual-identity requirement. Explore other families when they suit the design; the requirement is correct Hanji and romanization rendering, including stacked and combining marks.
 - **Monospace font**: MonoLisa 3.000, which kahiok holds a personal licence for. The webfont build includes Combining Diacritical Marks, and kahiok finds v3's diacritics better than earlier versions. Still check how romanized Taiwanese renders before setting it in MonoLisa.
 - **MonoLisa licence**: the EULA allows embedding the webfont on kahiok.com but forbids redistribution. The repo is public, so the font files are gitignored and must never be committed. Builds without them must still work by falling back to a free monospace font. Setup details are in `README.md`.
 - No other visual identity is binding. The old site's look (particle "kahiok" text, parallax, Mantine dark, red buttons) is not a commitment.
