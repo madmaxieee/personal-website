@@ -22,5 +22,5 @@ To restore them on a fresh clone, download the webfont build from the [MonoLisa 
 Consequences:
 
 - **Deploy from a machine that has the fonts.** `pnpm build` copies them from `public/` into `dist/`. A build without them (CI, a fresh clone, a fork) still succeeds, but the font requests 404 and text falls back to the next family in the stack. Every `font-family` stack that uses `MonoLisaCode` must therefore end in a free monospace fallback.
-- **Automated builds** (Cloudflare Git integration, GitHub Actions) need the fonts from a private source at build time, such as a private submodule or a private R2 bucket fetched with a token. This is not set up yet.
+- **Automated builds** get the fonts from the private repo `madmaxieee/monolisa-webfont`. `.github/workflows/deploy.yml` rebuilds and deploys every Monday so build-time data (star counts) stays fresh. It checks the font repo out with a read-only deploy key whose private half is the `MONOLISA_DEPLOY_KEY` secret. It refuses to deploy unless all 14 font files are present, because a deploy without them would remove them from the live site. It also needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets.
 - Visitors' browsers download the served files; that is the embedding the EULA allows. Publishing them in this repo would be redistribution, which it does not.

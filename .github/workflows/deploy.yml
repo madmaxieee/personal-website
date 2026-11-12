@@ -1,0 +1,66 @@
+# Rebuilds and deploys the site weekly, so build-time data such as GitHub star
+# counts stays fresh without new commits. Can also be run by hand.
+#
+# Secrets:
+#   CLOUDFLARE_API_TOKEN   token with "Edit Cloudflare Workers" permissions
+#   CLOUDFLARE_ACCOUNT_ID  the account that owns the kahiok-com Worker
+#   MONOLISA_DEPLOY_KEY    private half of a read-only deploy key on
+#                          madmaxieee/monolisa-webfont (see README.md)
+
+name: Deploy
+
+on:
+  schedule:
+    - cron: "0 3 * * 1" # Mondays 03:00 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # MonoLisa's EULA forbids redistribution, so the fonts live in a private repo.
+      - uses: actions/checkout@v4
+        with:
+          repository: madmaxieee/monolisa-webfont
+          ssh-key: ${{ secrets.MONOLISA_DEPLOY_KEY }}
+          path: .monolisa
+
+      # wrangler deploy replaces every asset, so deploying without the fonts
+      # would remove them from the live site.
+      - name: Install MonoLisa
+        run: |
+          mkdir -p public/fonts/monolisa
+          find .monolisa -name '*.woff2' -exec cp {} public/fonts/monolisa/ \;
+          rm -rf .monolisa
+          count=$(ls public/fonts/monolisa/*.woff2 | wc -l)
+          if [ "$count" -ne 14 ]; then
+            echo "::error::expected 14 MonoLisa woff2 files, found $count"
+            exit 1
+          fi
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm build
+        env:
+          # Raises the GitHub API rate limit for the star-count fetches.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
