@@ -5,6 +5,7 @@
 	"$schema": "https://unpkg.com/wrangler/config-schema.json",
 	"name": "kahiok-com",
 	"compatibility_date": "2026-11-10",
+	"routes": [{ "pattern": "www.kahiok.com", "custom_domain": true }],
 	"assets": {
 		"directory": "./dist",
 		"html_handling": "auto-trailing-slash",
