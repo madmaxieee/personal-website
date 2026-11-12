@@ -1,0 +1,13 @@
+// Static site: Cloudflare serves the Astro build in dist/ directly; no Worker code.
+// Deploy from a machine that has the MonoLisa webfont (gitignored; see README.md):
+//   pnpm build && pnpm dlx wrangler deploy
+{
+	"$schema": "https://unpkg.com/wrangler/config-schema.json",
+	"name": "kahiok-com",
+	"compatibility_date": "2026-11-10",
+	"assets": {
+		"directory": "./dist",
+		"html_handling": "auto-trailing-slash",
+		"not_found_handling": "404-page"
+	}
+}

@@ -67,7 +67,7 @@ Constraints:
 
 ## Evidence on Hand
 
-- `public/files/Tsng_Kahiok_Resume.pdf`: the current résumé. Its source of truth is the Typst source at `/Users/madmax/Repos/resume/main.typ`, built to `main.pdf` there and copied in. `public/_redirects` 301s the old `/files/Max_Chuang_Resume.pdf` URL. The résumé is the source of truth for experience facts: Google Firmware/System Software Engineer (Aug 2024–present), Appier frontend intern (Nov 2023–Mar 2024), NTU BSc EE (2020–2024).
+- `public/files/tsng_kahiok_resume.pdf`: the current résumé. Its source of truth is the Typst source at `/Users/madmax/Repos/resume/main.typ`, built to `main.pdf` there and copied in. `public/_redirects` 301s the old `/files/Max_Chuang_Resume.pdf` URL. The résumé is the source of truth for experience facts: Google Firmware/System Software Engineer (Aug 2024–present), Appier frontend intern (Nov 2023–Mar 2024), NTU BSc EE (2020–2024).
 - `public/assets/images/avatar.png`: an illustrated avatar of kahiok.
 - `public/assets/images/LightDanceLogo.png`: the NTUEE Light Dance logo.
 - `public/assets/images/guess-the-lyrics-logo.png`: kept on disk, but the project is no longer featured.

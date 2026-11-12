@@ -1,4 +1,4 @@
-// Facts follow the résumé (public/files/Tsng_Kahiok_Resume.pdf); keep them in sync. Project years are
+// Facts follow the résumé (public/files/tsng_kahiok_resume.pdf); keep them in sync. Project years are
 // repo creation dates. Work is newest first: ongoing work by start date, then finished work.
 
 export interface Link {
