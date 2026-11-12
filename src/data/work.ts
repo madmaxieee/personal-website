@@ -1,4 +1,5 @@
-// Facts follow the résumé (public/files/Tsng_Kahiok_Resume.pdf); keep them in sync.
+// Facts follow the résumé (public/files/Tsng_Kahiok_Resume.pdf); keep them in sync. Project years are
+// repo creation dates. Work is newest first: ongoing work by start date, then finished work.
 
 export interface Link {
   label: string;
@@ -7,55 +8,21 @@ export interface Link {
 
 export interface WorkEntry {
   name: string;
-  href: string;
+  /** Omitted for entries that are not a single project. */
+  href?: string;
   summary: string;
   /** Language or medium, shown as the entry's metadata. */
   stack: string;
   role: string;
   years: string;
   extra?: Link[];
+  /** Word that introduces `extra`; defaults to "Also". */
+  extraLead?: string;
   /** Language of `summary` when it is not plain English, e.g. contains Tâi-lô. */
   lang?: string;
 }
 
 export const work: WorkEntry[] = [
-  {
-    name: "loglit",
-    href: "https://github.com/madmaxieee/loglit",
-    summary: "A command-line log highlighter: regex rules, and it peeks at stderr even when the stream is piped.",
-    stack: "Go",
-    role: "author",
-    years: "2024–",
-  },
-  {
-    name: "fff-snacks.nvim",
-    href: "https://github.com/madmaxieee/fff-snacks.nvim",
-    summary: "Brings fff's file search into the snacks.nvim picker.",
-    stack: "Lua",
-    role: "author",
-    years: "2024–",
-  },
-  {
-    name: "unclash.nvim",
-    href: "https://github.com/madmaxieee/unclash.nvim",
-    summary: "A three-way merge conflict manager for Neovim.",
-    stack: "Lua",
-    role: "author",
-    years: "2024–",
-  },
-  {
-    name: "Upstream",
-    href: "https://github.com/madmaxieee",
-    summary: "Bug fixes and features contributed to other people's tools.",
-    stack: "pull requests",
-    role: "contributor",
-    years: "2024–",
-    extra: [
-      { label: "fff", href: "https://github.com/dmtrKovalenko/fff" },
-      { label: "snacks.nvim", href: "https://github.com/folke/snacks.nvim" },
-      { label: "blink.pairs", href: "https://github.com/saghen/blink.pairs" },
-    ],
-  },
   {
     name: "TaigiKeyboard",
     href: "https://github.com/taigikeyboard/taigikeyboard",
@@ -63,7 +30,44 @@ export const work: WorkEntry[] = [
       "An open-source Taiwanese input method for iOS, Android, macOS, Windows and Linux. Type in Tâi-lô, Pe̍h-ōe-jī or TPS; write in Hanji or mixed script.",
     stack: "multi-platform",
     role: "maintainer",
-    years: "now",
+    years: "2026–",
+  },
+  {
+    name: "unclash.nvim",
+    href: "https://github.com/madmaxieee/unclash.nvim",
+    summary: "A three-way merge conflict manager for Neovim.",
+    stack: "Lua",
+    role: "author",
+    years: "2026–",
+  },
+  {
+    name: "loglit",
+    href: "https://github.com/madmaxieee/loglit",
+    summary: "A command-line log highlighter: regex rules, and it peeks at stderr even when the stream is piped.",
+    stack: "Go",
+    role: "author",
+    years: "2025–",
+  },
+  {
+    name: "fff-snacks.nvim",
+    href: "https://github.com/madmaxieee/fff-snacks.nvim",
+    summary: "Brings fff's file search into the snacks.nvim picker.",
+    stack: "Lua",
+    role: "author",
+    years: "2025–",
+  },
+  {
+    name: "Contributions",
+    summary: "Bug fixes and features contributed to other people's tools.",
+    stack: "pull requests",
+    role: "contributor",
+    years: "2024–",
+    extraLead: "To",
+    extra: [
+      { label: "fff", href: "https://github.com/dmtrKovalenko/fff" },
+      { label: "snacks.nvim", href: "https://github.com/folke/snacks.nvim" },
+      { label: "blink.pairs", href: "https://github.com/saghen/blink.pairs" },
+    ],
   },
   {
     name: "qsyn",

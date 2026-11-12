@@ -35,8 +35,8 @@
   --x: 1;
 
   --line: 1.5px;
-  --margin: 3.75rem;
-  --gutter: 1rem;
+  --margin: 0.75rem; /* phones: no labels in the margin, just room before the rule */
+  --gutter: 1.25rem;
   --edge: clamp(1rem, 4vw, 4.5rem);
 }
 

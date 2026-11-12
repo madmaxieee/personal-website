@@ -8,6 +8,13 @@
  *
  * Noto Serif TC is subset to the few Hanji this site's chrome uses. Any other
  * Hanji (e.g. in a 台語 post) falls through to the next family in the stack.
+ * When the chrome gains a character, rebuild both weights from Google Fonts'
+ * NotoSerifTC[wght].ttf (v2.003) so existing glyphs stay identical:
+ *   fonttools varLib.instancer NotoSerifTC[wght].ttf wght=400 -o i400.ttf
+ *   pyftsubset i400.ttf --text="<every Hanji>" --flavor=woff2 \
+ *     --output-file=NotoSerifTC-400-subset.woff2
+ * (and the same with 900). The subset currently holds:
+ * 一三二五作六初加印台品四大字排放文旭樣歷白章絡經聯莊號話語漢
  */
 
 @font-face {

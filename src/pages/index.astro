@@ -1,8 +1,8 @@
 ---
 import "../styles/global.css";
 import { work, experience } from "../data/work";
+import { stars } from "../data/stars";
 
-const set = new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" });
 const description =
   "kahiok (莊加旭, Tsng Kahiok): firmware and system software engineer, maker of Neovim and command-line tools, and maintainer of TaigiKeyboard.";
 
@@ -13,6 +13,9 @@ const sections = [
   { id: "contact", n: 4, title: "Contact", han: "聯絡" },
 ];
 const [sWork, sWriting, sExperience, sContact] = sections;
+
+const workStars = await Promise.all(work.map((w) => stars(w.href)));
+const starLabel = (n?: number) => (n === undefined ? undefined : `${n} ${n === 1 ? "star" : "stars"}`);
 ---
 
 <html lang="en">
@@ -35,8 +38,8 @@ const [sWork, sWriting, sExperience, sContact] = sections;
   <body>
     <div class="sheet">
       <header class="head">
-        <span class="label head-mark" lang="nan-Hant">字樣</span>
-        <p class="head-title"><a href="/" aria-current="page">kahiok.com</a>, specimen set {set}</p>
+        <span class="label head-mark"><img src="/apple-touch-icon.png" alt="" width="28" height="28" /></span>
+        <p class="head-title"><a href="/" aria-current="page">kahiok.com</a></p>
         <nav aria-label="Sections">
           <ol class="toc">
             {
@@ -55,20 +58,16 @@ const [sWork, sWriting, sExperience, sContact] = sections;
 
       <main>
         <section class="ident" aria-label="About">
-          <span class="label" aria-hidden="true"
-            >初號<span class="pt">42pt</span><span class="pt mag"
-              ><span class="x-125">放大 ×1.25</span><span class="x-15">放大 ×1.5</span></span
-            ></span
-          >
+          <span class="label" aria-hidden="true">name</span>
           <h1 class="l-0">kahiok</h1>
 
-          <span class="label" aria-hidden="true">一號<span class="pt">27.5pt</span></span>
+          <span class="label" aria-hidden="true" lang="nan-Hant">漢字</span>
           <p class="l-1" lang="nan-Hant">莊加旭</p>
 
-          <span class="label" aria-hidden="true">三號<span class="pt">15.75pt</span></span>
+          <span class="label" aria-hidden="true" lang="nan-Latn">Tâi-lô</span>
           <p class="l-3" lang="nan-Latn">Tsng Kahiok</p>
 
-          <span class="label" aria-hidden="true">五號<span class="pt">10.5pt</span></span>
+          <span class="label" aria-hidden="true">about</span>
           <div class="bio">
             <p>
               Firmware and system software engineer at Google, working on the modem for Pixel, from the Linux kernel
@@ -86,7 +85,7 @@ const [sWork, sWriting, sExperience, sContact] = sections;
 
         <section class="sec sec-work" id={sWork.id} aria-labelledby="h-work">
           <h2 id="h-work" class="sec-head">
-            <span class="num">§{sWork.n}<span class="size" aria-hidden="true">三號</span></span>
+            <span class="num">§{sWork.n}</span>
             <span>{sWork.title} <span class="sec-han" lang="nan-Hant">{sWork.han}</span></span>
           </h2>
           <ol class="entries">
@@ -95,21 +94,27 @@ const [sWork, sWriting, sExperience, sContact] = sections;
                 <li class="entry">
                   <span class="num" aria-hidden="true">
                     {sWork.n}.{i + 1}
-                    <span class="size">四號 13.75pt</span>
                   </span>
-                  <div class="entry-body">
+                  <div class="entry-body stacked">
                     <h3 class="entry-name">
-                      <a href={w.href}>{w.name}</a>
+                      {w.href ? <a href={w.href}>{w.name}</a> : w.name}
                     </h3>
                     <p class="entry-meta">
-                      {w.stack} · {w.role} · {w.years}
+                      {[w.stack, w.role, w.years, starLabel(workStars[i])]
+                        .filter(Boolean)
+                        .map((x, j) => (
+                          <>
+                            {j > 0 && " · "}
+                            <span class="keep">{x}</span>
+                          </>
+                        ))}
                     </p>
                     <p class="entry-sum" lang={w.lang}>
                       {w.summary}
                     </p>
                     {w.extra && (
                       <p class="entry-also">
-                        {w.name === "Upstream" ? "To " : "Also "}
+                        {w.extraLead ?? "Also"}{" "}
                         {w.extra.map((x, j) => (
                           <>
                             <a href={x.href}>{x.label}</a>
@@ -128,7 +133,7 @@ const [sWork, sWriting, sExperience, sContact] = sections;
 
         <section class="sec sec-writing" id={sWriting.id} aria-labelledby="h-writing">
           <h2 id="h-writing" class="sec-head">
-            <span class="num">§{sWriting.n}<span class="size" aria-hidden="true">三號</span></span>
+            <span class="num">§{sWriting.n}</span>
             <span>{sWriting.title} <span class="sec-han" lang="nan-Hant">{sWriting.han}</span></span>
           </h2>
           <p class="empty">
@@ -138,7 +143,7 @@ const [sWork, sWriting, sExperience, sContact] = sections;
 
         <section class="sec sec-exp" id={sExperience.id} aria-labelledby="h-exp">
           <h2 id="h-exp" class="sec-head">
-            <span class="num">§{sExperience.n}<span class="size" aria-hidden="true">三號</span></span>
+            <span class="num">§{sExperience.n}</span>
             <span>{sExperience.title} <span class="sec-han" lang="nan-Hant">{sExperience.han}</span></span>
           </h2>
           <ol class="entries">
@@ -147,7 +152,6 @@ const [sWork, sWriting, sExperience, sContact] = sections;
                 <li class="entry">
                   <span class="num" aria-hidden="true">
                     {sExperience.n}.{i + 1}
-                    <span class="size">四號 13.75pt</span>
                   </span>
                   <div class="entry-body">
                     <h3 class="entry-name">{e.org}</h3>
@@ -164,7 +168,7 @@ const [sWork, sWriting, sExperience, sContact] = sections;
 
         <section class="sec sec-contact" id={sContact.id} aria-labelledby="h-contact">
           <h2 id="h-contact" class="sec-head">
-            <span class="num">§{sContact.n}<span class="size" aria-hidden="true">三號</span></span>
+            <span class="num">§{sContact.n}</span>
             <span>{sContact.title} <span class="sec-han" lang="nan-Hant">{sContact.han}</span></span>
           </h2>
           <dl class="contact">
@@ -180,15 +184,8 @@ const [sWork, sWriting, sExperience, sContact] = sections;
       </main>
 
       <footer class="colophon">
-        <span class="label" lang="nan-Hant">排印</span>
-        <p>
-          Set in Gentium Book Plus, Noto Serif TC and MonoLisa. Sizes follow the 號 system with 五號 at 18px; the name
-          above is enlarged as its margin says. Built with Astro.
-        </p>
-        <span class="label" aria-hidden="true">三號<span class="pt">15.75pt</span></span>
-        <p class="showing" lang="nan-Latn">
-          <span class="keep">Tâi-lô â á à ā a̍ a̋</span> · <span class="keep">Pe̍h-ōe-jī o͘ e̍ ǹg ḿ</span>
-        </p>
+        <span class="label">colophon</span>
+        <p>Set in Gentium Book Plus, Noto Serif TC and MonoLisa. Built with Astro.</p>
       </footer>
     </div>
   </body>
@@ -232,11 +229,6 @@ const [sWork, sWriting, sExperience, sContact] = sections;
     font-variant-numeric: tabular-nums;
   }
 
-  .label .pt {
-    display: block;
-    color: var(--lead);
-  }
-
   /* Head */
 
   .head {
@@ -250,6 +242,12 @@ const [sWork, sWriting, sExperience, sContact] = sections;
 
   .head-mark {
     grid-row: 1;
+    align-self: center;
+    line-height: 0;
+  }
+
+  .head-mark img {
+    border-radius: 50%;
   }
 
   .head-title,
@@ -314,22 +312,6 @@ const [sWork, sWriting, sExperience, sContact] = sections;
 
   .ident > .label {
     grid-column: 1;
-  }
-
-  .mag span {
-    display: none;
-  }
-
-  @media (min-width: 45em) and (max-width: 69.99em) {
-    .mag .x-125 {
-      display: inline;
-    }
-  }
-
-  @media (min-width: 70em) {
-    .mag .x-15 {
-      display: inline;
-    }
   }
 
   .l-0 {
@@ -407,27 +389,10 @@ const [sWork, sWriting, sExperience, sContact] = sections;
     color: var(--lead);
   }
 
-  .sec-head .size {
-    display: block;
-    color: var(--lead);
-  }
-
-  .entry .size {
-    display: none;
-    color: var(--blue);
-    white-space: nowrap;
-  }
-
-  /* Pointing at an entry proofs it: its number turns blue and its size is
-     marked under it. States snap; nothing tweens. */
+  /* Pointing at an entry marks its number. */
   .entry:hover .num,
   .entry:focus-within .num {
     color: var(--blue);
-  }
-
-  .entry:hover .size,
-  .entry:focus-within .size {
-    display: block;
   }
 
   .entry-body {
@@ -435,6 +400,15 @@ const [sWork, sWriting, sExperience, sContact] = sections;
     grid-template-columns: minmax(0, 1fr) auto;
     column-gap: 1rem;
     align-items: baseline;
+  }
+
+  /* Work entries carry longer metadata, so it sits under the name. */
+  .entry-body.stacked {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stacked .entry-meta {
+    text-align: left;
   }
 
   .entry-name {
@@ -531,30 +505,42 @@ const [sWork, sWriting, sExperience, sContact] = sections;
     grid-column: 1;
   }
 
-  .colophon > .label:not(:first-child) {
-    margin-top: 1.5rem;
-  }
-
   .keep {
     white-space: nowrap;
   }
 
-  .colophon .showing {
-    max-width: none;
-    margin-top: 1.5rem;
-    font-size: var(--s-3);
-    line-height: 1.5;
-    color: var(--ink);
-  }
-
-  /* Narrow: the margin keeps its size names and drops the point sizes. */
+  /* Narrow: no margin column. The rule stays as the sheet's left edge, and what
+     the margin held (avatar, colophon label) moves into the text column. */
   @media (max-width: 44.99em) {
-    .label .pt {
+    .head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      column-gap: 0.625rem;
+      padding: 1.25rem 0 0 calc(var(--margin) + var(--gutter));
+    }
+
+    .head-mark {
+      padding-right: 0;
+    }
+
+    .head-title,
+    .head nav {
+      padding-left: 0;
+    }
+
+    .head nav {
+      flex-basis: 100%;
+    }
+
+    .ident > .label {
       display: none;
     }
 
-    .head {
-      padding-top: 1.25rem;
+    .colophon > .label {
+      grid-column: 2;
+      text-align: left;
+      padding-left: var(--gutter);
     }
 
     .ident {
@@ -603,10 +589,6 @@ const [sWork, sWriting, sExperience, sContact] = sections;
       padding-left: 2.5rem;
     }
 
-    .entry .size {
-      white-space: normal;
-    }
-
     .contact {
       grid-template-columns: 2.5rem 5.5rem minmax(0, 1fr);
     }
@@ -626,9 +608,11 @@ const [sWork, sWriting, sExperience, sContact] = sections;
     }
 
     /* Two columns that flow independently: Work spans past Writing so
-       Experience starts under Writing, and Contact starts under Work. */
+       Experience starts under Writing, and Contact starts under Work. Row 3 is
+       flexible so Work's extra height lands there, not spread over rows 1-2,
+       which would push Writing and Experience down. */
     main {
-      grid-template-rows: auto auto auto auto;
+      grid-template-rows: auto auto 1fr auto;
       align-items: start;
     }
 
